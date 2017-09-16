@@ -11,30 +11,30 @@ import Results from "./Results";
 export default class Main extends React.Component {
     constructor(props){
         super(props);
-            this.state = {
-            };
+            // this.state = {
+            // };
     }
 
-    // Show data in database
-    componentDidMount(){
+    // // Show data in database
+    // componentDidMount(){
 
-    }
+    // }
 
-    // Fire when you search, watch, save etc (every time you complete action/ change)
-    componentDidUpdate(){
+    // // Fire when you search, watch, save etc (every time you complete action/ change)
+    // componentDidUpdate(){
 
-    }
+    // }
 
-    //   When "Reset" button is clicked,  clear results
-    handleClear(event){
-        event.preventDefault();
+    // //   When "Reset" button is clicked,  clear results
+    // handleClear(event){
+    //     event.preventDefault();
 
-    }
+    // }
 
-    //   When "Watching" button is clicked,  update boot to "Watching" (doesn't work)
-    handleClick(){
+    // //   When "Watching" button is clicked,  update boot to "Watching" (doesn't work)
+    // handleClick(){
 
-    }
+    // }
 
     render() {
         return(

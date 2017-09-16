@@ -9,10 +9,10 @@ var path = require("path");
 
 // Sets up the Express App
 var app = express();
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 3000;
 
 // Requiring our Note and Article models
-var Boot = require("./models/boot.js");
+// var Boot = require("./models/boot.js");
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
@@ -27,15 +27,15 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 // mLab Heroku Connection
-mongoose.connect("mongodb://heroku_73sw5d1s:j1f5g4f7m1v3rvu7bfamvq26i1@ds129344.mlab.com:29344/heroku_73sw5d1s");
-var db = mongoose.connection;
-
-// Database configuration with mongoose (Local connection)
-// mongoose.connect("mongodb://localhost/boot_scraper_R");
+// mongoose.connect("mongodb://heroku_73sw5d1s:j1f5g4f7m1v3rvu7bfamvq26i1@ds129344.mlab.com:29344/heroku_73sw5d1s");
 // var db = mongoose.connection;
 
+// Database configuration with mongoose (Local connection)
+mongoose.connect("mongodb://localhost/clinical_trial_db");
+var db = mongoose.connection;
+
 // Require in routes
-require("./controllers/routes.js")(app);
+// require("./controllers/routes.js")(app);
 
 app.get('*', function (request, response){
     response.sendFile(path.resolve(__dirname, 'public', 'index.html'))

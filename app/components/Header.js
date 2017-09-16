@@ -13,6 +13,8 @@ export default class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button> 
+                        <NavLink to="/" className="nav-item"><img src="http://demo.thesisawesome.com/site/blogskin/files/2012/10/your-logo-here.png" style={{height: 50}}/>
+                        </NavLink>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav"></ul>
@@ -21,10 +23,10 @@ export default class Header extends React.Component {
                                 <NavLink to="/" className="nav-link">FAQ</NavLink>
                             </li>
 
-                            <li className="nav-item">
-                                <form onSubmit={this.props.reset} action="/" className="nav-link">
-                                    <button type="submit" className="btn btn-danger">Contact</button>
-                                </form>
+                            <li className="nav-item" style={{paddingTop: 7, paddingRight: 20}}>
+                               
+                                <NavLink to="/contact" className="nav-link"><button type="submit" className="btn btn-danger">Contact</button></NavLink>
+                                
                             </li>
                         </ul>
                     </div>

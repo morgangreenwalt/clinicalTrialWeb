@@ -1,0 +1,32 @@
+.contact-module {
+    background-color: #8DC73F;
+    height: 300px;
+}
+
+.contact-text {
+    padding-top: 90px;
+    padding-bottom: 20px;
+}
+
+.contact-btn {
+    border: 3px solid #fff;
+    background-color: #8DC73F;
+}
+
+a {
+    color: inherit;
+}
+
+.intro-text {
+    background-color: #3F2950;
+    height: 300px;
+    position: relative;
+}
+
+.faq-title {
+    color: #8DC73F;
+    position: absolute;
+    left: 425px;
+    top: 100px;
+    font-size: 50px;
+}
