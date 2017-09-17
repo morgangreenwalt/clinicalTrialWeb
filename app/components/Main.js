@@ -2,11 +2,12 @@ import React, {Component} from "react";
 import helpers from "./utils/helpers";
 
 // Importing components
-import Header from "./Header";
+import Nav from "./Nav";
 import Footer from "./Footer";
 import FAQ from "./FAQ";
 import Watching from "./Watching";
 import Results from "./Results";
+import Hero from "./Hero";
 
 export default class Main extends React.Component {
     constructor(props){
@@ -39,7 +40,7 @@ export default class Main extends React.Component {
     render() {
         return(
             <div className="main-wrapper">
-                <Header/>
+                <Nav/>
                 <FAQ/>
                 <Footer/>
             </div>

@@ -1,6 +1,14 @@
 import React, {Component} from "react";
 import {NavLink} from "react-router-dom";
 
+// Importing components
+import Nav from "./Nav";
+import Footer from "./Footer";
+import FAQ from "./FAQ";
+import Watching from "./Watching";
+import Results from "./Results";
+import Hero from "./Hero";
+
 export default class Contact extends React.Component {  
     constructor(props){
         super(props)
@@ -9,6 +17,10 @@ export default class Contact extends React.Component {
     render() {
 
         return(
+            <div className="wrapper">
+            <Nav/>
+            <Hero/>
+            
             <div className="container">
                 <div className="row">
                 <form>
@@ -44,7 +56,8 @@ export default class Contact extends React.Component {
                     <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div> 
-            </div>    
+            </div> 
+            </div>   
         )
     }
 }
