@@ -1,0 +1,25 @@
+@media screen and (max-width: 992px) {
+    .faqCopy {
+        position: relative;
+        text-align: justify;
+        padding-top: 30px;
+        margin-left: 40px;
+        margin-right: 40px;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        padding-bottom: 30px;
+    }
+    .faqTitle {
+        position: relative;
+        text-align: center;
+        padding-top: 30px;
+        margin-left: 40px;
+        margin-right: 40px;
+        left: 0px;
+        top: 0px;
+    }
+    .faqMain {
+        height: 100%;
+    }
+}

@@ -1,32 +1,91 @@
-.contact-module {
-    background-color: #8DC73F;
-    height: 300px;
+* {
+    font-family: 'Lato', sans-serif;
 }
 
-.contact-text {
-    padding-top: 90px;
+.contactModule {
+    background-color: #8DC73F;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.contactText {
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
-.contact-btn {
-    border: 3px solid #fff;
+.contactBtn {
+    border: 2.5px solid #fff;
     background-color: #8DC73F;
+}
+
+.contactBtn2 {
+    border: 2.5px solid #000;
+    /* background-color: #8DC73F; */
 }
 
 a {
     color: inherit;
 }
 
-.intro-text {
-    background-color: #3F2950;
+.faqHero {
+    /* background-color: #3F2950; */
+    background-image: url("https://pixnio.com/free-images/2017/03/25/2017-03-25-09-30-39.jpg");
     height: 300px;
-    position: relative;
+    opacity: .6;
+    margin-top: -90px;
+    color: #000;
 }
 
-.faq-title {
-    color: #8DC73F;
+.faqMain {
+    position: relative;
+    /* background-color: #45ac4b; */
+    background-color: rgba(141, 199, 63, 0.85);
+    height: 250px;
+    margin-top: -50px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.faqCopy {
+    color: #000;
     position: absolute;
-    left: 425px;
-    top: 100px;
+    left: 100px;
+    top: 140px;
+    right: 100px;
+}
+
+.faqTitle {
+    /* color: #3F2950; */
+    color: #000;
+    position: absolute;
+    left: 250px;
+    top: 40px;
     font-size: 50px;
+}
+
+.footer {
+    background-color: rgba(45, 44, 44, 0.83);
+    height: 300px;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.questions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.answer {
+    margin-bottom: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
 }
