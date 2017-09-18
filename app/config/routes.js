@@ -7,13 +7,14 @@ const history = createBrowserHistory()
 // Including components
 import Main from "../components/Main";
 import Contact from "../components/Contact";
-// import Search from "../components/Search";
+import Login from "../components/Login";
 
 const Routes = () => (    
     <Router history={history}>
         <Switch>
             <Route exact path="/" component={Main}/>
             <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/login" component={Login}/>
             
         </Switch>    
     </Router>
