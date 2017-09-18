@@ -23,6 +23,11 @@
     /* background-color: #8DC73F; */
 }
 
+.searchBtn {
+    border: 2.5px solid #8DC73F;
+    background-color: #fff;
+}
+
 a {
     color: inherit;
 }

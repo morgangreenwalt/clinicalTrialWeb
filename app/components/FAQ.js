@@ -16,31 +16,35 @@ export default class FAQ extends React.Component {
                 <Hero/> 
                 <div className="container">
                     <form action="/" method="POST">
-                        <div className="form-group">
-                            <label for="faqCategory">Select Category</label>
-                            <select className="form-control" id="faqCategory">
-                            <option>Eligibility</option>
-                            <option>Recurrence</option>
-                            <option>Concomitant Meds</option>
-                            <option>Adverse Event</option>
-                            <option>Randomization</option>
-                            <option>Tumor Assessment</option>
-                            <option>Study Procedures</option>
-                            <option>Study Drug</option>
-                            <option>Labs</option>
-                            <option>Regulatory</option>
-                            <option>Other</option>
-                            </select>
+                        <div className="row">
+                            <div className="form-group col-md-8 col-md-offset-2">
+                                <label for="faqCategory"> Topics </label>
+                                <select className="form-control" id="faqCategory">
+                                <option>Eligibility</option>
+                                <option>Recurrence</option>
+                                <option>Concomitant Meds</option>
+                                <option>Adverse Event</option>
+                                <option>Randomization</option>
+                                <option>Tumor Assessment</option>
+                                <option>Study Procedures</option>
+                                <option>Study Drug</option>
+                                <option>Labs</option>
+                                <option>Regulatory</option>
+                                <option>Other</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div className="form-group">
-                            <label for="textarea">Search</label>
-                            <textarea class="form-control" id="textarea" rows="3"></textarea>
+                        <div className="row">   
+                            <div className="form-group col-md-7 col-md-offset-2">
+                                <input type="text" name="searchInquiry" className="form-control" id="searchInquiry" placeholder="Enter Search Here"/>
+                            </div>
+                            <div className="col-md-2">
+                                <NavLink to="/">
+                                    <button type="submit" id ="loginSubmit" className="btn searchBtn btn-md">Search</button>
+                                </NavLink>
+                            </div>   
                         </div>
-
-                        <NavLink to="/">
-                            <button type="submit" id ="loginSubmit" className="btn contactBtn btn-lg">Search FAQ</button>
-                        </NavLink>
                     </form>
 
                     <div className="questions">
