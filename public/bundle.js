@@ -17169,20 +17169,11 @@ var _routes = __webpack_require__(239);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _Auth = __webpack_require__(290);
-
-var _Auth2 = _interopRequireDefault(_Auth);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Including React & React DOM
-var auth = new _Auth2.default();
 
 // Renders the contents according to the route page.
 
-auth.login();
-
-(0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app"));
+(0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app")); // Including React & React DOM
 
 /***/ }),
 /* 140 */
@@ -28444,9 +28435,9 @@ var _Login = __webpack_require__(289);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _index = __webpack_require__(329);
+var _Auth = __webpack_require__(290);
 
-var _index2 = _interopRequireDefault(_index);
+var _Auth2 = _interopRequireDefault(_Auth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28455,8 +28446,15 @@ var history = (0, _createBrowserHistory2.default)();
 // Including components
 // Including React & React DOM
 
+// import Index from "../index.js";
 
-var auth = new auth();
+
+var auth = new _Auth2.default();
+
+if (!auth.isAuthenticated()) {
+    auth.login();
+}
+console.log(auth.auth0);
 
 var handleAuthentication = function handleAuthentication(nextState, replace) {
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
@@ -39250,124 +39248,6 @@ WebMessageHandler.prototype.checkSession = function(options, cb) {
 
 module.exports = WebMessageHandler;
 
-
-/***/ }),
-/* 329 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(153);
-
-var _routes = __webpack_require__(239);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Including React & React DOM
-
-
-var Index = function (_Component) {
-  _inherits(Index, _Component);
-
-  function Index() {
-    _classCallCheck(this, Index);
-
-    return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
-  }
-
-  _createClass(Index, [{
-    key: "goTo",
-    value: function goTo(route) {
-      this.props.history.replace("/" + route);
-    }
-  }, {
-    key: "login",
-    value: function login() {
-      this.props.auth.login();
-    }
-  }, {
-    key: "logout",
-    value: function logout() {
-      this.props.auth.logout();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var isAuthenticated = this.props.auth.isAuthenticated;
-
-
-      return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-          Navbar,
-          { fluid: true },
-          _react2.default.createElement(
-            Navbar.Header,
-            null,
-            _react2.default.createElement(
-              Navbar.Brand,
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Auth0 - React"
-              )
-            ),
-            _react2.default.createElement(
-              Button,
-              {
-                bsStyle: "primary",
-                className: "btn-margin",
-                onClick: this.goTo.bind(this, 'home')
-              },
-              "Home"
-            ),
-            !isAuthenticated() && _react2.default.createElement(
-              Button,
-              {
-                bsStyle: "primary",
-                className: "btn-margin",
-                onClick: this.login.bind(this)
-              },
-              "Log In"
-            ),
-            isAuthenticated() && _react2.default.createElement(
-              Button,
-              {
-                bsStyle: "primary",
-                className: "btn-margin",
-                onClick: this.logout.bind(this)
-              },
-              "Log Out"
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return Index;
-}(Component);
-
-exports.default = Index;
 
 /***/ })
 /******/ ]);
