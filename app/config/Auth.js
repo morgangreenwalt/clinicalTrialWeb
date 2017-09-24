@@ -1,21 +1,20 @@
 import auth0 from 'auth0-js';
 
 export default class Auth {
-  auth01 = new auth0.WebAuth({
+  auth0 = new auth0.WebAuth({
     domain: 'ttn10.auth0.com',
-    clientID: 'SMdcoUT_eNwQQKNiflUtAmfVRcvoeO1g',
-    redirectUri: 'http://localhost:3000/callback',
+    clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
+    redirectUri: 'http://localhost:3000/main',
     audience: 'https://ttn10.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
   });
 
-
   constructor() {
-    // this.login = this.login.bind(this);
-    // this.logout = this.logout.bind(this);
-    // this.handleAuthentication = this.handleAuthentication.bind(this);
-    // this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
   login() {
@@ -60,4 +59,5 @@ export default class Auth {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
+
 }

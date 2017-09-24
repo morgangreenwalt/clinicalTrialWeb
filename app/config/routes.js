@@ -8,11 +8,20 @@ const history = createBrowserHistory()
 import Main from "../components/Main";
 import Contact from "../components/Contact";
 import Login from "../components/Login";
+import Index from "../index.js";
 
-const Routes = () => (    
+const auth = new auth();
+
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+
+export const Routes = () => (    
     <Router history={history}>
         <Switch>
-            <Route exact path="/" component={Main}/>
+            <Route exact path="/main" component={Main}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/login" component={Login}/>
             
