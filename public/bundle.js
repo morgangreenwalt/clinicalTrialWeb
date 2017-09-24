@@ -28451,14 +28451,21 @@ var history = (0, _createBrowserHistory2.default)();
 
 var auth = new _Auth2.default();
 
-if (!auth.isAuthenticated()) {
-    auth.login();
-}
-console.log(auth.auth0);
+console.log(auth.user);
 
 var handleAuthentication = function handleAuthentication(nextState, replace) {
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
         auth.handleAuthentication();
+    }
+};
+
+var checkAuth = function checkAuth(prop) {
+    if (!auth.isAuthenticated()) {
+        console.log('not');
+        auth.login();
+        handleAuthentication(props);
+    } else {
+        props.history.replace("/main");
     }
 };
 
@@ -28469,7 +28476,18 @@ var Routes = exports.Routes = function Routes() {
         _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/main", component: _Main2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", render: function render(props) {
+                    if (!auth.isAuthenticated()) {
+                        console.log('not');
+                        auth.login();
+                    } else {
+                        return _react2.default.createElement(_reactRouterDom.Redirect, { to: "main" });
+                    }
+                } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/main", render: function render(props) {
+                    handleAuthentication(props);
+                    return _react2.default.createElement(_Main2.default, { auth: auth });
+                } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", component: _Login2.default })
         )
@@ -31329,28 +31347,37 @@ var Main = function (_React$Component) {
         // };
     }
 
-    // // Show data in database
-    // componentDidMount(){
-
-    // }
-
-    // // Fire when you search, watch, save etc (every time you complete action/ change)
-    // componentDidUpdate(){
-
-    // }
-
-    // //   When "Reset" button is clicked,  clear results
-    // handleClear(event){
-    //     event.preventDefault();
-
-    // }
-
-    // //   When "Watching" button is clicked,  update boot to "Watching" (doesn't work)
-    // handleClick(){
-
-    // }
-
     _createClass(Main, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            console.log('auth', this.props.auth);
+            this.props.auth.getProfile(function (x, y) {
+                console.log(y);
+            });
+        }
+
+        // // Show data in database
+        // componentDidMount(){
+
+        // }
+
+        // // Fire when you search, watch, save etc (every time you complete action/ change)
+        // componentDidUpdate(){
+
+        // }
+
+        // //   When "Reset" button is clicked,  clear results
+        // handleClear(event){
+        //     event.preventDefault();
+
+        // }
+
+        // //   When "Watching" button is clicked,  update boot to "Watching" (doesn't work)
+        // handleClick(){
+
+        // }
+
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -32646,6 +32673,10 @@ var _auth0Js = __webpack_require__(291);
 
 var _auth0Js2 = _interopRequireDefault(_auth0Js);
 
+var _history = __webpack_require__(330);
+
+var _history2 = _interopRequireDefault(_history);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32660,13 +32691,14 @@ var Auth = function () {
       redirectUri: 'http://localhost:3000/main',
       audience: 'https://ttn10.auth0.com/userinfo',
       responseType: 'token id_token',
-      scope: 'openid'
+      scope: 'openid profile'
     });
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
 
   _createClass(Auth, [{
@@ -32679,12 +32711,14 @@ var Auth = function () {
     value: function handleAuthentication() {
       var _this = this;
 
+      console.log('history auth.js', _history2.default);
       this.auth0.parseHash(function (err, authResult) {
         if (authResult && authResult.accessToken && authResult.idToken) {
           _this.setSession(authResult);
-          history.replace('/home');
+          console.log(_history2.default);
+          _history2.default.replace('/main');
         } else if (err) {
-          history.replace('/home');
+          _history2.default.replace('/main');
           console.log(err);
           alert('Error: ' + err.error + '. Check the console for further details.');
         }
@@ -32698,8 +32732,8 @@ var Auth = function () {
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
-      // navigate to the home route
-      history.replace('/home');
+      // navigate to the main route
+      _history2.default.replace('/main');
     }
   }, {
     key: 'logout',
@@ -32708,8 +32742,8 @@ var Auth = function () {
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      // navigate to the home route
-      history.replace('/home');
+      // navigate to the main route
+      _history2.default.replace('/main');
     }
   }, {
     key: 'isAuthenticated',
@@ -32717,7 +32751,36 @@ var Auth = function () {
       // Check whether the current time is past the 
       // access token's expiry time
       var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-      return new Date().getTime() < expiresAt;
+      // return new Date().getTime() < expiresAt;
+      var x = new Date().getTime() < expiresAt;
+      console.log(x);
+      console.log(expiresAt);
+      return x;
+    }
+  }, {
+    key: 'getAccessToken',
+    value: function getAccessToken() {
+      var accessToken = localStorage.getItem('access_token');
+      if (!accessToken) {
+        throw new Error('No access token found');
+      }
+      return accessToken;
+    }
+
+    //...
+
+  }, {
+    key: 'getProfile',
+    value: function getProfile(cb) {
+      var _this2 = this;
+
+      var accessToken = this.getAccessToken();
+      this.auth0.client.userInfo(accessToken, function (err, profile) {
+        if (profile) {
+          _this2.userProfile = profile;
+        }
+        cb(err, profile);
+      });
     }
   }]);
 
@@ -39248,6 +39311,26 @@ WebMessageHandler.prototype.checkSession = function(options, cb) {
 
 module.exports = WebMessageHandler;
 
+
+/***/ }),
+/* 329 */,
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createBrowserHistory = __webpack_require__(114);
+
+var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _createBrowserHistory2.default)();
 
 /***/ })
 /******/ ]);

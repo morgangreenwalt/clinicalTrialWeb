@@ -15,6 +15,11 @@ export default class Main extends React.Component {
             // this.state = {
             // };
     }
+    
+    componentDidMount() {
+        console.log('auth', this.props.auth);
+        this.props.auth.getProfile((x,y) =>{console.log(y)})
+    }
 
     // // Show data in database
     // componentDidMount(){

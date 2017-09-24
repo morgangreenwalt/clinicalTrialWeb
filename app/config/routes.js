@@ -1,6 +1,6 @@
 // Including React & React DOM
 import React from "react";
-import {Router, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch, Redirect} from "react-router-dom";
 import createBrowserHistory from 'history/createBrowserHistory';
 const history = createBrowserHistory()
 
@@ -13,21 +13,40 @@ import Auth from './Auth.js';
 
 const auth = new Auth();
 
-if(!auth.isAuthenticated()){
-    auth.login();
-}
-console.log(auth.auth0);
+
+console.log(auth.user);
 
 const handleAuthentication = (nextState, replace) => {
   if (/access_token|id_token|error/.test(nextState.location.hash)) {
     auth.handleAuthentication();
   }
-}
+};
+
+const checkAuth=(prop)=>{
+    if(!auth.isAuthenticated()){
+        console.log('not');
+        auth.login();
+        handleAuthentication(props);
+    } else {
+        props.history.replace("/main");
+    }
+};
 
 export const Routes = () => (
     <Router history={history}>
         <Switch>
-            <Route exact path="/main" component={Main}/>
+            <Route exact path="/" render={(props) => {
+                if(!auth.isAuthenticated()){
+                    console.log('not');
+                    auth.login();
+                } else {
+                    return <Redirect to="main" />
+                }
+            }} />
+            <Route exact path="/main" render={(props) => {
+                handleAuthentication(props)
+                return <Main auth={auth}/>
+            }} />
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/login" component={Login}/>
             
