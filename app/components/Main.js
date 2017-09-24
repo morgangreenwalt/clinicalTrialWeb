@@ -12,6 +12,13 @@ export default class Main extends React.Component {
         super(props);
             // this.state = {
             // };
+        this.props.auth.handleAuthentication(this.props);
+    }
+    
+    componentDidMount() {
+        console.log('auth123', this.props.auth);
+        // this.props.auth.handleAuthentication(this.props);
+        this.props.auth.getProfile((x,y) =>{console.log(y)})
     }
 
     // // Show data in database

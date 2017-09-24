@@ -1,41 +1,43 @@
 {
-    "name": "react-scraper",
-    "version": "1.0.0",
-    "description": "",
-    "main": "public/index.html",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack -w",
-        "start": "node server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/morgangreenwalt/boots-react.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/morgangreenwalt/boots-react/issues"
-    },
-    "homepage": "https://github.com/morgangreenwalt/boots-react#readme",
-    "dependencies": {
-        "axios": "^0.16.2",
-        "body-parser": "^1.17.2",
-        "cheerio": "^1.0.0-rc.2",
-        "express": "^4.15.4",
-        "mongoose": "^4.11.9",
-        "morgan": "^1.8.2",
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1",
-        "react-router-dom": "^4.2.2",
-        "request": "^2.81.0"
-    },
-    "devDependencies": {
-        "babel": "^6.23.0",
-        "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-react": "^6.24.1",
-        "webpack": "^3.5.5"
-    }
+  "name": "react-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morgangreenwalt/boots-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morgangreenwalt/boots-react/issues"
+  },
+  "homepage": "https://github.com/morgangreenwalt/boots-react#readme",
+  "dependencies": {
+    "auth0-js": "^8.10.1",
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.9",
+    "morgan": "^1.8.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^3.5.5"
+  }
 }
