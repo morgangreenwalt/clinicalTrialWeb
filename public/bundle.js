@@ -9248,14 +9248,6 @@ var _FAQ = __webpack_require__(77);
 
 var _FAQ2 = _interopRequireDefault(_FAQ);
 
-var _Watching = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Watching\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var _Watching2 = _interopRequireDefault(_Watching);
-
-var _Results = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Results\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var _Results2 = _interopRequireDefault(_Results);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32279,14 +32271,6 @@ var _Footer2 = _interopRequireDefault(_Footer);
 var _FAQ = __webpack_require__(77);
 
 var _FAQ2 = _interopRequireDefault(_FAQ);
-
-var _Watching = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Watching\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var _Watching2 = _interopRequireDefault(_Watching);
-
-var _Results = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Results\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var _Results2 = _interopRequireDefault(_Results);
 
 var _Hero = __webpack_require__(78);
 

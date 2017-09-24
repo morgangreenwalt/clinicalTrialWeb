@@ -5,8 +5,6 @@ import {NavLink} from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import FAQ from "./FAQ";
-import Watching from "./Watching";
-import Results from "./Results";
 
 export default class Hero extends React.Component {  
     constructor(props){
