@@ -38,13 +38,19 @@ export default class Contact extends React.Component {
                     </div>
             
                     <div className="form-group">
-                        <label for="exampleSelect1">Example select</label>
-                        <select className="form-control" id="exampleSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <label for="topic">Select Topic</label>
+                        <select className="form-control" id="topic">
+                        <option>Eligibility</option>
+                        <option>Recurrence</option>
+                        <option>Concomitant Meds</option>
+                        <option>Adverse Event</option>
+                        <option>Randomization</option>
+                        <option>Tumor Assessment</option>
+                        <option>Study Procedures</option>
+                        <option>Study Drug</option>
+                        <option>Labs</option>
+                        <option>Regulatory</option>
+                        <option>Other</option>
                         </select>
                     </div>
                     
