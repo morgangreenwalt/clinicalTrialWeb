@@ -28451,8 +28451,6 @@ var history = (0, _createBrowserHistory2.default)();
 
 var auth = new _Auth2.default();
 
-console.log(auth.user);
-
 var handleAuthentication = function handleAuthentication(nextState, replace) {
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
         auth.handleAuthentication();
@@ -28485,11 +28483,14 @@ var Routes = exports.Routes = function Routes() {
                     }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/main", render: function render(props) {
-                    handleAuthentication(props);
                     return _react2.default.createElement(_Main2.default, { auth: auth });
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", component: _Login2.default })
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", component: _Login2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/callback", render: function render(props) {
+                    handleAuthentication(props);
+                    return _react2.default.createElement(_reactRouterDom.Redirect, { to: "main" });
+                } })
         )
     );
 };
@@ -31342,15 +31343,19 @@ var Main = function (_React$Component) {
     function Main(props) {
         _classCallCheck(this, Main);
 
-        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
         // this.state = {
         // };
+        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+        _this.props.auth.handleAuthentication(_this.props);
+        return _this;
     }
 
     _createClass(Main, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            console.log('auth', this.props.auth);
+            console.log('auth123', this.props.auth);
+            // this.props.auth.handleAuthentication(this.props);
             this.props.auth.getProfile(function (x, y) {
                 console.log(y);
             });
@@ -32688,7 +32693,7 @@ var Auth = function () {
     this.auth0 = new _auth0Js2.default.WebAuth({
       domain: 'ttn10.auth0.com',
       clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
-      redirectUri: 'http://localhost:3000/main',
+      redirectUri: 'http://localhost:3000/callback',
       audience: 'https://ttn10.auth0.com/userinfo',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -32778,6 +32783,7 @@ var Auth = function () {
       this.auth0.client.userInfo(accessToken, function (err, profile) {
         if (profile) {
           _this2.userProfile = profile;
+          debugger;
         }
         cb(err, profile);
       });

@@ -13,9 +13,6 @@ import Auth from './Auth.js';
 
 const auth = new Auth();
 
-
-console.log(auth.user);
-
 const handleAuthentication = (nextState, replace) => {
   if (/access_token|id_token|error/.test(nextState.location.hash)) {
     auth.handleAuthentication();
@@ -44,11 +41,14 @@ export const Routes = () => (
                 }
             }} />
             <Route exact path="/main" render={(props) => {
-                handleAuthentication(props)
                 return <Main auth={auth}/>
             }} />
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/callback" render={(props) => {
+                handleAuthentication(props);
+                return <Redirect to="main" />
+            }} />
             
         </Switch>    
     </Router>
