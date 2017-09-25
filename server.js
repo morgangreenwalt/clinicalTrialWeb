@@ -11,8 +11,13 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-// Requiring our Note and Article models
-// var Boot = require("./models/boot.js");
+
+// requiring faq model
+var Faq = require('./models/Faq.js');
+//var Question = require('./models/question.js');
+
+
+
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
@@ -37,9 +42,23 @@ var db = mongoose.connection;
 // Require in routes
 // require("./controllers/routes.js")(app);
 
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-  })
+// app.get('*', function (request, response){
+//     response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+//   })
+
+// route to receive all faq's from db
+app.get('/api/faq', function (req, res) {
+    
+    Faq.find({}, function(error, doc){
+        if (error) {
+            console.log(error);
+        }
+        else {
+            res.send(doc);
+        }
+    });
+
+});
 
 // Show any mongoose errors
 db.on("error", function(error) {
