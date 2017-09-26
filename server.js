@@ -16,7 +16,13 @@ var PORT = process.env.PORT || 3000;
 var Faq = require('./models/Faq.js');
 //var Question = require('./models/question.js');
 
+var Zendesk = require('zendesk-node-api');
 
+var zendesk = new Zendesk({
+ url: 'https://clintrial.zendesk.com', // https://example.zendesk.com 
+ email: 'ryanglennarnett@gmail.com', // me@example.com 
+ token: 'nv3iDcCAMTWVb4r58yGs9i6YK4gsjZuGLPBysrIX' // hfkUny3vgHCcV3UfuqMFZWDrLKms4z3W2f6ftjPT 
+});
 
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -39,13 +45,6 @@ app.use(express.static("public"));
 mongoose.connect("mongodb://localhost/clinical_trial_db");
 var db = mongoose.connection;
 
-// Require in routes
-// require("./controllers/routes.js")(app);
-
-// app.get('*', function (request, response){
-//     response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-//   })
-
 // route to receive all faq's from db
 app.get('/api/faq', function (req, res) {
     
@@ -59,6 +58,28 @@ app.get('/api/faq', function (req, res) {
     });
 
 });
+
+app.get('/api/zendesk/newTicket/:comment', function (req, res) {
+
+    zendesk.tickets.create({
+        subject: 'test subject',
+        comment: {
+          body: req.params.comment
+        }
+      }).then(function(result){
+        console.log(result);
+        res.send(result);
+      });
+        
+});
+
+// Require in routes
+// require("./controllers/routes.js")(app);
+
+app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  });
+
 
 // Show any mongoose errors
 db.on("error", function(error) {

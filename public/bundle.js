@@ -32278,6 +32278,8 @@ var _Hero2 = _interopRequireDefault(_Hero);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -32293,13 +32295,58 @@ var Contact = function (_React$Component) {
     function Contact(props) {
         _classCallCheck(this, Contact);
 
-        return _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this, props));
+
+        _this.state = {
+            foo: null,
+            topic: '',
+            question: '',
+            ticket: ''
+        };
+
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
     }
 
+    // componentDidMount() {
+    //   fetch("/api/zendesk/newTicket")
+    //     .then(response => response.json())
+    //     .then((foo) => { this.setState({ foo }); });
+    // }
+
     _createClass(Contact, [{
+        key: "handleInputChange",
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.id;
+
+            this.setState(_defineProperty({}, name, value));
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            console.log("this submit was handled");
+            console.log('A ticket was submitted: ', this.state);
+            event.preventDefault();
+            this.sendTicket();
+        }
+    }, {
+        key: "sendTicket",
+        value: function sendTicket() {
+            var _this2 = this;
+
+            fetch('/api/zendesk/newTicket/' + this.state.question).then(function (response) {
+                return response.json();
+            }).then(function (ticket) {
+                _this2.setState({ ticket: ticket });
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
-
+            console.log("component loaded!");
             return _react2.default.createElement(
                 "div",
                 { className: "wrapper" },
@@ -32313,7 +32360,7 @@ var Contact = function (_React$Component) {
                         { className: "row" },
                         _react2.default.createElement(
                             "form",
-                            null,
+                            { onSubmit: this.handleSubmit },
                             _react2.default.createElement(
                                 "div",
                                 { className: "form-group" },
@@ -32420,7 +32467,9 @@ var Contact = function (_React$Component) {
                                     { "for": "question" },
                                     "Question"
                                 ),
-                                _react2.default.createElement("textarea", { className: "form-control", id: "question", rows: "3" })
+                                _react2.default.createElement("textarea", { className: "form-control", id: "question", rows: "3",
+                                    value: this.state.question,
+                                    onChange: this.handleInputChange })
                             ),
                             _react2.default.createElement(
                                 "button",
