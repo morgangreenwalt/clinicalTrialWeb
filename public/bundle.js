@@ -32730,7 +32730,6 @@ var Auth = function () {
       this.auth0.client.userInfo(accessToken, function (err, profile) {
         if (profile) {
           _this2.userProfile = profile;
-          debugger;
         }
         cb(err, profile);
       });

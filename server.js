@@ -14,6 +14,7 @@ var PORT = process.env.PORT || 3000;
 
 // requiring faq model
 var Faq = require('./models/Faq.js');
+var Article = require('./models/Article.js');
 //var Question = require('./models/question.js');
 
 var Zendesk = require('zendesk-node-api');
@@ -43,17 +44,21 @@ app.use(express.static("public"));
 
 // Database configuration with mongoose (Local connection)
 mongoose.connect("mongodb://localhost/clinical_trial_db");
+// mongoose.connect("mongodb://localhost/newsScraping");
+
 var db = mongoose.connection;
 
 // route to receive all faq's from db
 app.get('/api/faq', function (req, res) {
-    
+    console.log(Faq.find({}));
     Faq.find({}, function(error, doc){
         if (error) {
             console.log(error);
         }
         else {
-            res.send(doc);
+            console.log(doc);
+            debugger;
+            res.json(doc);
         }
     });
 
