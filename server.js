@@ -59,12 +59,13 @@ app.get('/api/faq', function (req, res) {
 
 });
 
-app.get('/api/zendesk/newTicket/:comment', function (req, res) {
+app.get('/api/zendesk/newTicket/:comment/:firstName/:lastName/:email', function (req, res) {
 
     zendesk.tickets.create({
         subject: 'test subject',
         comment: {
-          body: req.params.comment
+          body: 'QUESTION: '+req.params.comment+'\n\nNAME: '+req.params.firstName+
+                ' '+req.params.lastName+'\nEMAIL: '+req.params.email
         }
       }).then(function(result){
         console.log(result);

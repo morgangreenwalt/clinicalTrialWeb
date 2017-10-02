@@ -13,6 +13,9 @@ export default class Contact extends React.Component {
         
         this.state = {
             foo: null,
+            firstName: '',
+            lastName: '',
+            email: '',
             topic: '',
             question: '',
             ticket: ''
@@ -41,15 +44,30 @@ export default class Contact extends React.Component {
     handleSubmit(event) {
         console.log("this submit was handled");
         console.log('A ticket was submitted: ' , this.state);
+        var firstName = this.state.firstName;
+        var lastName = this.state.lastName;
+        var email = this.state.email;
+        var question = this.state.question;
         event.preventDefault();
-        this.sendTicket();
+        this.sendTicket(question, firstName, lastName, email);
     }
 
-    sendTicket() {
+    sendTicket(question, firstName, lastName, email) {
 
-        fetch('/api/zendesk/newTicket/'+this.state.question)
+        fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
         .then(response => response.json())
-        .then((ticket) => { this.setState({ ticket }); });
+        .then((ticket) => { this.setState({ 
+            foo: null,
+            firstName: '',
+            lastName: '',
+            email: '',
+            topic: '',
+            question: '',
+            ticket: ''
+            });
+            alert('Thanks '+firstName+'! Your question has been submitted.');
+            this.forceUpdate();
+        });
     }
 
     render() {
@@ -64,15 +82,21 @@ export default class Contact extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="firstName" className="form-control" id="firstName" placeholder="Enter First Name"/>
+                        <input type="firstName" className="form-control" id="firstName" placeholder="Enter First Name"
+                            value={this.state.firstName}
+                            onChange={this.handleInputChange}/>
                     </div>
                     <div className="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="lastName" className="form-control" id="lastName" placeholder="Enter Last Name"/>
+                        <input type="lastName" className="form-control" id="lastName" placeholder="Enter Last Name"
+                            value={this.state.lastName}
+                            onChange={this.handleInputChange}/>
                     </div>
                     <div className="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" className="form-control" id="email" placeholder="Enter Email"/>
+                        <input type="email" className="form-control" id="email" placeholder="Enter Email"
+                            value={this.state.email}
+                            onChange={this.handleInputChange}/>
                     </div>
             
                     <div className="form-group">
