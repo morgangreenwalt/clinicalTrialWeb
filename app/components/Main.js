@@ -7,6 +7,8 @@ import Footer from "./Footer";
 import FAQ from "./FAQ";
 import Hero from "./Hero";
 
+
+
 export default class Main extends React.Component {
     constructor(props){
         super(props);
@@ -15,20 +17,14 @@ export default class Main extends React.Component {
         };
         this.props.auth.handleAuthentication(this.props);
     }
-<<<<<<< HEAD
     
-    componentDidMount() {
-        console.log('auth123', this.props.auth);
-        // this.props.auth.handleAuthentication(this.props);
-        this.props.auth.getProfile((x,y) =>{console.log(y)})
-
-
-        
-
-
+    checkTickets() {
+        console.log('trying to check for tickets....');
+        fetch('/api/zendesk/checkTickets')
+        .then(response => response.json())
+        .then((ticket) => console.log(JSON.stringify(ticket, null, 2))
+        );
     }
-=======
->>>>>>> 0e9857e39bbe21f91c6f2d8b80e433615e100692
 
     // // Show data in database
     componentDidMount(){
@@ -39,6 +35,9 @@ export default class Main extends React.Component {
             this.setState({ FAQ: data });
         }
         });
+
+        this.checkTickets();
+
     }
 
     // // Fire when you search, watch, save etc (every time you complete action/ change)

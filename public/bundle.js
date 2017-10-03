@@ -31199,10 +31199,20 @@ var Main = function (_React$Component) {
         return _this;
     }
 
-    // // Show data in database
-
-
     _createClass(Main, [{
+        key: "checkTickets",
+        value: function checkTickets() {
+            console.log('trying to check for tickets....');
+            fetch('/api/zendesk/checkTickets').then(function (response) {
+                return response.json();
+            }).then(function (ticket) {
+                return console.log(JSON.stringify(ticket, null, 2));
+            });
+        }
+
+        // // Show data in database
+
+    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
@@ -31216,6 +31226,8 @@ var Main = function (_React$Component) {
                     _this2.setState({ FAQ: data });
                 }
             });
+
+            this.checkTickets();
         }
 
         // // Fire when you search, watch, save etc (every time you complete action/ change)

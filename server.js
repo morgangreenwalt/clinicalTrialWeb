@@ -62,16 +62,29 @@ app.get('/api/faq', function (req, res) {
 
 });
 
-app.get('api/zendesk/checkTickets', function (req, res) {
-    zendesk.tickets.list('sort_by=status&sort_order=desc').then(function(tickets){
-        console.log(tickets);
+app.get('/api/zendesk/checkTickets', function (req, res) {
+
+
+    // zendesk.tickets.list('sort_by=status&sort_order=desc&external_id=ryan@arnett.org')
+    // .then(function(tickets){
+    //     console.log(tickets);
+    //     res.send(tickets);
+    //   });
+
+    request('https://clintrial.zendesk.com/api/v2/ticket_audits.json', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log(body);
+          res.send(body);
+        }
       });
+
 });
 
 app.get('/api/zendesk/newTicket/:comment/:firstName/:lastName/:email', function (req, res) {
 
     zendesk.tickets.create({
         subject: 'test subject',
+        external_id: req.params.email,
         comment: {
           body: 'QUESTION: '+req.params.comment+'\n\nNAME: '+req.params.firstName+
                 ' '+req.params.lastName+'\nEMAIL: '+req.params.email
