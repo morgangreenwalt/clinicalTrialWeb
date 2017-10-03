@@ -64,6 +64,12 @@ app.get('/api/faq', function (req, res) {
 
 });
 
+app.get('api/zendesk/checkTickets', function (req, res) {
+    zendesk.tickets.list('sort_by=status&sort_order=desc').then(function(tickets){
+        console.log(tickets);
+      });
+});
+
 app.get('/api/zendesk/newTicket/:comment/:firstName/:lastName/:email', function (req, res) {
 
     zendesk.tickets.create({
