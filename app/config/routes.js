@@ -9,6 +9,7 @@ import Main from "../components/Main";
 import Contact from "../components/Contact";
 import Login from "../components/Login";
 import FAQ from "../components/FAQ";
+import Admin from "../components/Admin";
 // import Index from "../index.js";
 import Auth from './Auth.js';
 
@@ -50,6 +51,7 @@ export const Routes = () => (
                 }
             }} />
             <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/admin" component={Admin}/>
             <Route exact path="/login" render={(props) => { 
                 handleAuthentication(props);
                 return <Login />

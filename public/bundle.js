@@ -28343,6 +28343,10 @@ var _FAQ = __webpack_require__(77);
 
 var _FAQ2 = _interopRequireDefault(_FAQ);
 
+var _Admin = __webpack_require__(328);
+
+var _Admin2 = _interopRequireDefault(_Admin);
+
 var _Auth = __webpack_require__(288);
 
 var _Auth2 = _interopRequireDefault(_Auth);
@@ -28399,6 +28403,7 @@ var Routes = exports.Routes = function Routes() {
                     }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/admin", component: _Admin2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", render: function render(props) {
                     handleAuthentication(props);
                     return _react2.default.createElement(_Login2.default, null);
@@ -39315,6 +39320,243 @@ var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _createBrowserHistory2.default)();
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _Nav = __webpack_require__(75);
+
+var _Nav2 = _interopRequireDefault(_Nav);
+
+var _Footer = __webpack_require__(76);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _FAQ = __webpack_require__(77);
+
+var _FAQ2 = _interopRequireDefault(_FAQ);
+
+var _Hero = __webpack_require__(78);
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// Importing components
+
+
+var Admin = function (_React$Component) {
+    _inherits(Admin, _React$Component);
+
+    function Admin(props) {
+        _classCallCheck(this, Admin);
+
+        var _this = _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).call(this, props));
+
+        _this.state = {
+            foo: null,
+            firstName: '',
+            lastName: '',
+            email: '',
+            topic: '',
+            question: '',
+            ticket: ''
+        };
+
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Admin, [{
+        key: "handleInputChange",
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.id;
+
+            this.setState(_defineProperty({}, name, value));
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            console.log("this submit was handled");
+            console.log('A ticket was submitted: ', this.state);
+            var firstName = this.state.firstName;
+            var lastName = this.state.lastName;
+            var email = this.state.email;
+            var question = this.state.question;
+            event.preventDefault();
+            this.sendTicket(question, firstName, lastName, email);
+        }
+
+        // sendTicket(question, firstName, lastName, email) {
+
+        //     fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
+        //     .then(response => response.json())
+        //     .then((ticket) => { this.setState({ 
+        //         foo: null,
+        //         firstName: '',
+        //         lastName: '',
+        //         email: '',
+        //         topic: '',
+        //         question: '',
+        //         ticket: ''
+        //         });
+        //         alert('Thanks '+firstName+'! Your question has been submitted.');
+        //         this.forceUpdate();
+        //     });
+        // }
+
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "wrapper" },
+                _react2.default.createElement(_Nav2.default, null),
+                _react2.default.createElement(_Hero2.default, null),
+                _react2.default.createElement(
+                    "div",
+                    { className: "container" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "row" },
+                        _react2.default.createElement(
+                            "form",
+                            { onSubmit: this.handleSubmit, style: { marginBottom: 30 } },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "topic" },
+                                    "Select Category"
+                                ),
+                                _react2.default.createElement(
+                                    "select",
+                                    { className: "form-control", id: "topic" },
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Eligibility"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Recurrence"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Concomitant Meds"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Adverse Event"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Randomization"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Tumor Assessment"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Study Procedures"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Study Drug"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Labs"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Regulatory"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Other"
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "adminQuestion" },
+                                    "Question"
+                                ),
+                                _react2.default.createElement("textarea", { className: "form-control", id: "adminQuestion", rows: "3",
+                                    value: this.state.adminQuestion,
+                                    onChange: this.handleInputChange })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "adminAnswer" },
+                                    "Answer"
+                                ),
+                                _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "adminAnswer",
+                                    value: this.state.adminAnswer,
+                                    onChange: this.handleInputChange })
+                            ),
+                            _react2.default.createElement(
+                                "button",
+                                { type: "submit", className: "btn searchBtn" },
+                                "Submit"
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Admin;
+}(_react2.default.Component);
+
+exports.default = Admin;
 
 /***/ })
 /******/ ]);
