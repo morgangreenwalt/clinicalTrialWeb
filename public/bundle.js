@@ -32278,6 +32278,9 @@ var Contact = function (_React$Component) {
 
         _this.state = {
             foo: null,
+            firstName: '',
+            lastName: '',
+            email: '',
             topic: '',
             question: '',
             ticket: ''
@@ -32308,18 +32311,32 @@ var Contact = function (_React$Component) {
         value: function handleSubmit(event) {
             console.log("this submit was handled");
             console.log('A ticket was submitted: ', this.state);
+            var firstName = this.state.firstName;
+            var lastName = this.state.lastName;
+            var email = this.state.email;
+            var question = this.state.question;
             event.preventDefault();
-            this.sendTicket();
+            this.sendTicket(question, firstName, lastName, email);
         }
     }, {
         key: "sendTicket",
-        value: function sendTicket() {
+        value: function sendTicket(question, firstName, lastName, email) {
             var _this2 = this;
 
-            fetch('/api/zendesk/newTicket/' + this.state.question).then(function (response) {
+            fetch('/api/zendesk/newTicket/' + question + '/' + firstName + '/' + lastName + '/' + email).then(function (response) {
                 return response.json();
             }).then(function (ticket) {
-                _this2.setState({ ticket: ticket });
+                _this2.setState({
+                    foo: null,
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    topic: '',
+                    question: '',
+                    ticket: ''
+                });
+                alert('Thanks ' + firstName + '! Your question has been submitted.');
+                _this2.forceUpdate();
             });
         }
     }, {
@@ -32348,7 +32365,9 @@ var Contact = function (_React$Component) {
                                     { "for": "firstName" },
                                     "First Name"
                                 ),
-                                _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "firstName", placeholder: "Enter First Name" })
+                                _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "firstName", placeholder: "Enter First Name",
+                                    value: this.state.firstName,
+                                    onChange: this.handleInputChange })
                             ),
                             _react2.default.createElement(
                                 "div",
@@ -32358,7 +32377,9 @@ var Contact = function (_React$Component) {
                                     { "for": "lastName" },
                                     "Last Name"
                                 ),
-                                _react2.default.createElement("input", { type: "lastName", className: "form-control", id: "lastName", placeholder: "Enter Last Name" })
+                                _react2.default.createElement("input", { type: "lastName", className: "form-control", id: "lastName", placeholder: "Enter Last Name",
+                                    value: this.state.lastName,
+                                    onChange: this.handleInputChange })
                             ),
                             _react2.default.createElement(
                                 "div",
@@ -32368,7 +32389,9 @@ var Contact = function (_React$Component) {
                                     { "for": "email" },
                                     "Email address"
                                 ),
-                                _react2.default.createElement("input", { type: "email", className: "form-control", id: "email", placeholder: "Enter Email" })
+                                _react2.default.createElement("input", { type: "email", className: "form-control", id: "email", placeholder: "Enter Email",
+                                    value: this.state.email,
+                                    onChange: this.handleInputChange })
                             ),
                             _react2.default.createElement(
                                 "div",
