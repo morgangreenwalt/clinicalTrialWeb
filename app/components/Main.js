@@ -18,13 +18,13 @@ export default class Main extends React.Component {
         this.props.auth.handleAuthentication(this.props);
     }
     
-    checkTickets() {
-        console.log('trying to check for tickets....');
-        fetch('/api/zendesk/checkTickets')
-        .then(response => response.json())
-        .then((ticket) => console.log(JSON.stringify(ticket, null, 2))
-        );
-    }
+    // checkTickets() {
+    //     console.log('trying to check for tickets....');
+    //     fetch('/api/zendesk/checkTickets')
+    //     .then(response => response.json())
+    //     .then((ticket) => console.log(JSON.stringify(ticket, null, 2))
+    //     );
+    // }
 
     // // Show data in database
     componentDidMount(){
@@ -36,7 +36,7 @@ export default class Main extends React.Component {
         }
         });
 
-        this.checkTickets();
+        //this.checkTickets();
 
     }
 

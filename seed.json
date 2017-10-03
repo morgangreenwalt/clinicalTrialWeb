@@ -1,5 +1,5 @@
 {
-	"undefined": "mongodb://localhost/clinical_trial_db",
-	"dev": "localhost/DEV_DB_NAME",
-	"prod": "localhost/PROD_DB_NAME"
+    "undefined": "mongodb://localhost/clinical_trial_db",
+    "dev": "localhost/clinical_trial_db",
+    "prod": "localhost/clinical_trial_db"
 }

@@ -8779,7 +8779,7 @@ var Nav = function (_React$Component) {
                 { className: "site-header" },
                 _react2.default.createElement(
                     "nav",
-                    { className: "navbar navbar-light sticky-top" },
+                    { className: "navbar navbar-light navbar-sticky-top" },
                     _react2.default.createElement(
                         "div",
                         { className: "navbar-header" },
@@ -8798,7 +8798,11 @@ var Nav = function (_React$Component) {
                         _react2.default.createElement(
                             _reactRouterDom.NavLink,
                             { to: "/", className: "nav-item" },
-                            _react2.default.createElement("img", { src: "http://demo.thesisawesome.com/site/blogskin/files/2012/10/your-logo-here.png", style: { height: 50, marginTop: 10 } })
+                            _react2.default.createElement(
+                                "h2",
+                                { style: { marginTop: 15, paddingLeft: 25 } },
+                                "Polynoma"
+                            )
                         )
                     ),
                     _react2.default.createElement(
@@ -8813,8 +8817,8 @@ var Nav = function (_React$Component) {
                                 { className: "nav-item", style: { marginTop: 10 } },
                                 _react2.default.createElement(
                                     _reactRouterDom.NavLink,
-                                    { to: "/", className: "nav-link" },
-                                    "Home"
+                                    { to: "/main", className: "nav-link" },
+                                    "FAQ"
                                 )
                             ),
                             _react2.default.createElement(
@@ -8822,8 +8826,8 @@ var Nav = function (_React$Component) {
                                 { className: "nav-item", style: { marginTop: 10 } },
                                 _react2.default.createElement(
                                     _reactRouterDom.NavLink,
-                                    { to: "/", className: "nav-link" },
-                                    "FAQ"
+                                    { to: "/logout", className: "nav-link" },
+                                    "Logout"
                                 )
                             ),
                             _react2.default.createElement(
@@ -9034,7 +9038,7 @@ var FAQ = function (_React$Component) {
                                 { className: "form-group col-md-8 col-md-offset-2" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "faqCategory" },
+                                    { htmlFor: "faqCategory" },
                                     " Topics "
                                 ),
                                 _react2.default.createElement(
@@ -9042,57 +9046,57 @@ var FAQ = function (_React$Component) {
                                     { className: "form-control", id: "faqCategory" },
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "eligibility", name: "eligibility" },
                                         "Eligibility"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "recurrence", name: "recurrence" },
                                         "Recurrence"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "concomitantMeds", name: "concomitantMeds" },
                                         "Concomitant Meds"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "adverseEvent", name: "adverseEvent" },
                                         "Adverse Event"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "randomization", name: "randomization" },
                                         "Randomization"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "tumorAssessment", name: "tumorAssessment" },
                                         "Tumor Assessment"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "studyProcedures", name: "studyProcedures" },
                                         "Study Procedures"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "studyDrug", name: "studyDrug" },
                                         "Study Drug"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "labs", name: "labs" },
                                         "Labs"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "regulatory", name: "regulatory" },
                                         "Regulatory"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Other", name: "other" },
                                         "Other"
                                     )
                                 )
@@ -9132,19 +9136,28 @@ var FAQ = function (_React$Component) {
                             this.props.FAQ && this.props.FAQ.data.map(function (data) {
                                 return _react2.default.createElement(
                                     "div",
-                                    { className: "col-md-12" },
+                                    { className: "col-md-12", key: data._id },
                                     _react2.default.createElement(
                                         "h4",
                                         { className: "question" },
-                                        "Question: ",
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "letter" },
+                                            "Q:  "
+                                        ),
                                         data.Question
                                     ),
                                     _react2.default.createElement(
                                         "p",
                                         { className: "answer" },
-                                        "Answer: ",
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "letterA" },
+                                            "A:  "
+                                        ),
                                         data['Clarification / Answer from Polynoma']
-                                    )
+                                    ),
+                                    _react2.default.createElement("hr", null)
                                 );
                             })
                         )
@@ -9236,7 +9249,12 @@ var Hero = function (_React$Component) {
     function Hero(props) {
         _classCallCheck(this, Hero);
 
-        return _possibleConstructorReturn(this, (Hero.__proto__ || Object.getPrototypeOf(Hero)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Hero.__proto__ || Object.getPrototypeOf(Hero)).call(this, props));
+
+        _this.state = {
+            heroTitle: ""
+        };
+        return _this;
     }
 
     _createClass(Hero, [{
@@ -17029,6 +17047,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Renders the contents according to the route page.
 
 (0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app")); // Including React & React DOM
+
+
+$(document).on("click", "#loginSubmit", function () {
+    // Grab the id associated with the article from the submit button
+    //   var thisId = $(this).respo("data-id");
+    //   var thisTitle = $(this).attr("data-title");
+    //   var thisLink = $(this).attr("data-link");
+    redirect("/main");
+
+    //   // Run a POST request to change the note, using what's entered in the inputs
+    //   $.ajax({
+    //     method: "POST",
+    //     url: "/saveArticles/" + thisId,
+    //     data: {
+    //       // Value taken from title input
+    //       title: thisTitle,
+    //       // Value taken from note textarea
+    //       link: thisLink,
+    //     }
+    //   })
+    //     // With that done
+    //     .done(function(data) {
+    //       // Log the response
+    //       console.log(data);
+    //       location.reload();
+    //     });
+});
+
+$(document).on("click", "#loginSubmit", function () {
+    redirect("/main");
+});
 
 /***/ }),
 /* 138 */
@@ -28290,6 +28339,10 @@ var _Login = __webpack_require__(287);
 
 var _Login2 = _interopRequireDefault(_Login);
 
+var _FAQ = __webpack_require__(77);
+
+var _FAQ2 = _interopRequireDefault(_FAQ);
+
 var _Auth = __webpack_require__(288);
 
 var _Auth2 = _interopRequireDefault(_Auth);
@@ -28338,10 +28391,18 @@ var Routes = exports.Routes = function Routes() {
                     }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/main", render: function render(props) {
-                    return _react2.default.createElement(_Main2.default, { auth: auth });
+                    if (!auth.isAuthenticated()) {
+                        console.log('not');
+                        auth.login();
+                    } else {
+                        return _react2.default.createElement(_Main2.default, { auth: auth });
+                    }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", component: _Login2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", render: function render(props) {
+                    handleAuthentication(props);
+                    return _react2.default.createElement(_Login2.default, null);
+                } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/callback", render: function render(props) {
                     handleAuthentication(props);
                     return _react2.default.createElement(_reactRouterDom.Redirect, { to: "main" });
@@ -31199,20 +31260,18 @@ var Main = function (_React$Component) {
         return _this;
     }
 
+    // checkTickets() {
+    //     console.log('trying to check for tickets....');
+    //     fetch('/api/zendesk/checkTickets')
+    //     .then(response => response.json())
+    //     .then((ticket) => console.log(JSON.stringify(ticket, null, 2))
+    //     );
+    // }
+
+    // // Show data in database
+
+
     _createClass(Main, [{
-        key: "checkTickets",
-        value: function checkTickets() {
-            console.log('trying to check for tickets....');
-            fetch('/api/zendesk/checkTickets').then(function (response) {
-                return response.json();
-            }).then(function (ticket) {
-                return console.log(JSON.stringify(ticket, null, 2));
-            });
-        }
-
-        // // Show data in database
-
-    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
@@ -31227,7 +31286,7 @@ var Main = function (_React$Component) {
                 }
             });
 
-            this.checkTickets();
+            //this.checkTickets();
         }
 
         // // Fire when you search, watch, save etc (every time you complete action/ change)
@@ -32368,7 +32427,7 @@ var Contact = function (_React$Component) {
                         { className: "row" },
                         _react2.default.createElement(
                             "form",
-                            { onSubmit: this.handleSubmit },
+                            { onSubmit: this.handleSubmit, style: { marginBottom: 30 } },
                             _react2.default.createElement(
                                 "div",
                                 { className: "form-group" },
@@ -32487,7 +32546,7 @@ var Contact = function (_React$Component) {
                             ),
                             _react2.default.createElement(
                                 "button",
-                                { type: "submit", className: "btn btn-primary" },
+                                { type: "submit", className: "btn searchBtn" },
                                 "Submit"
                             )
                         )
@@ -32551,7 +32610,7 @@ var Login = function (_React$Component) {
                         "h1",
                         { className: "text-center" },
                         _react2.default.createElement("i", { className: "fa fa-facebook-square", "aria-hidden": "true" }),
-                        " Clinical Trial"
+                        "Polynoma"
                     ),
                     _react2.default.createElement(
                         "h3",
@@ -32568,39 +32627,9 @@ var Login = function (_React$Component) {
                             _react2.default.createElement(
                                 "label",
                                 { "for": "trialNumber" },
-                                "Clinical Trial Number"
+                                "Polynoma Clinical Trial Number"
                             ),
                             _react2.default.createElement("input", { type: "text", name: "trialNumber", className: "form-control", id: "trialNumber", placeholder: "Clinical Trial Number" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { "for": "username" },
-                                "Username"
-                            ),
-                            _react2.default.createElement("input", { type: "text", name: "username", className: "form-control", id: "username", placeholder: "Username" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { "for": "password" },
-                                "Password"
-                            ),
-                            _react2.default.createElement("input", { type: "password", name: "password", className: "form-control", id: "password", placeholder: "Password" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { "for": "password" },
-                                "Re-enter Password"
-                            ),
-                            _react2.default.createElement("input", { type: "password", name: "password", className: "form-control", id: "password", placeholder: "Re-enter Password" })
                         ),
                         _react2.default.createElement(
                             _reactRouterDom.NavLink,
@@ -32654,7 +32683,7 @@ var Auth = function () {
     this.auth0 = new _auth0Js2.default.WebAuth({
       domain: 'ttn10.auth0.com',
       clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: 'http://localhost:3000/login',
       audience: 'https://ttn10.auth0.com/userinfo',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -32682,9 +32711,9 @@ var Auth = function () {
         if (authResult && authResult.accessToken && authResult.idToken) {
           _this.setSession(authResult);
           console.log(_history2.default);
-          _history2.default.replace('/main');
+          _history2.default.replace('/login');
         } else if (err) {
-          _history2.default.replace('/main');
+          _history2.default.replace('/login');
           console.log(err);
           alert('Error: ' + err.error + '. Check the console for further details.');
         }
@@ -32709,7 +32738,7 @@ var Auth = function () {
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
       // navigate to the main route
-      _history2.default.replace('/main');
+      _history2.default.replace('/');
     }
   }, {
     key: 'isAuthenticated',

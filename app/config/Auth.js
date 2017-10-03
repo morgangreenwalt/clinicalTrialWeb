@@ -5,7 +5,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'ttn10.auth0.com',
     clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://localhost:3000/login',
     audience: 'https://ttn10.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile'
@@ -31,9 +31,9 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         console.log(history);
-        history.replace('/main');
+        history.replace('/login');
       } else if (err) {
-        history.replace('/main');
+        history.replace('/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -56,7 +56,7 @@ export default class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     // navigate to the main route
-    history.replace('/main');
+    history.replace('/');
   }
 
   isAuthenticated() {
