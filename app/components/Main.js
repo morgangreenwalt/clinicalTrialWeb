@@ -10,10 +10,12 @@ import Hero from "./Hero";
 export default class Main extends React.Component {
     constructor(props){
         super(props);
-            // this.state = {
-            // };
+        this.state = {
+            FAQ: "",
+        };
         this.props.auth.handleAuthentication(this.props);
     }
+<<<<<<< HEAD
     
     componentDidMount() {
         console.log('auth123', this.props.auth);
@@ -25,11 +27,19 @@ export default class Main extends React.Component {
 
 
     }
+=======
+>>>>>>> 0e9857e39bbe21f91c6f2d8b80e433615e100692
 
     // // Show data in database
-    // componentDidMount(){
-
-    // }
+    componentDidMount(){
+    // this.props.auth.handleAuthentication(this.props);
+        this.props.auth.getProfile((x,y) =>{console.log(y)});
+        helpers.getAllFAQ().then((data) => {
+        if (data !== "") {
+            this.setState({ FAQ: data });
+        }
+        });
+    }
 
     // // Fire when you search, watch, save etc (every time you complete action/ change)
     // componentDidUpdate(){
@@ -51,7 +61,7 @@ export default class Main extends React.Component {
         return(
             <div className="main-wrapper">
                 <Nav/>
-                <FAQ/>
+                <FAQ FAQ={this.state.FAQ} />
                 <Footer/>
             </div>
         );

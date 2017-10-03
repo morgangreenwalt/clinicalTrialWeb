@@ -9002,19 +9002,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FAQ = function (_React$Component) {
     _inherits(FAQ, _React$Component);
 
-    function FAQ() {
+    // return(
+    //     <div>
+    //     {this.props.faq.map((data, i) => {
+
+    function FAQ(props) {
         _classCallCheck(this, FAQ);
 
-        return _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).call(this, props));
     }
 
     _createClass(FAQ, [{
         key: "render",
-
-        // return(
-        //     <div>
-        //     {this.props.faq.map((data, i) => {
-
         value: function render() {
 
             return _react2.default.createElement(
@@ -9128,54 +9127,26 @@ var FAQ = function (_React$Component) {
                         _react2.default.createElement(
                             "div",
                             { className: "row" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "col-md-6" },
-                                _react2.default.createElement(
-                                    "h4",
-                                    { className: "question" },
-                                    "Questions"
-                                ),
-                                _react2.default.createElement(
-                                    "p",
-                                    { className: "answer" },
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                                ),
-                                _react2.default.createElement(
-                                    "h4",
-                                    { className: "question" },
-                                    "Questions"
-                                ),
-                                _react2.default.createElement(
-                                    "p",
-                                    { className: "answer" },
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "div",
-                                { className: "col-md-6" },
-                                _react2.default.createElement(
-                                    "h4",
-                                    { className: "question" },
-                                    "Questions"
-                                ),
-                                _react2.default.createElement(
-                                    "p",
-                                    { className: "answer" },
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                                ),
-                                _react2.default.createElement(
-                                    "h4",
-                                    { className: "question" },
-                                    "Questions"
-                                ),
-                                _react2.default.createElement(
-                                    "p",
-                                    { className: "answer" },
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                                )
-                            )
+                            " ",
+                            console.log(this.props.FAQ),
+                            this.props.FAQ && this.props.FAQ.data.map(function (data) {
+                                return _react2.default.createElement(
+                                    "div",
+                                    { className: "col-md-12" },
+                                    _react2.default.createElement(
+                                        "h4",
+                                        { className: "question" },
+                                        "Question: ",
+                                        data.Question
+                                    ),
+                                    _react2.default.createElement(
+                                        "p",
+                                        { className: "answer" },
+                                        "Answer: ",
+                                        data['Clarification / Answer from Polynoma']
+                                    )
+                                );
+                            })
                         )
                     )
                 ),
@@ -31219,28 +31190,33 @@ var Main = function (_React$Component) {
     function Main(props) {
         _classCallCheck(this, Main);
 
-        // this.state = {
-        // };
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
+        _this.state = {
+            FAQ: ""
+        };
         _this.props.auth.handleAuthentication(_this.props);
         return _this;
     }
 
+    // // Show data in database
+
+
     _createClass(Main, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            console.log('auth123', this.props.auth);
+            var _this2 = this;
+
             // this.props.auth.handleAuthentication(this.props);
             this.props.auth.getProfile(function (x, y) {
                 console.log(y);
             });
+            _helpers2.default.getAllFAQ().then(function (data) {
+                if (data !== "") {
+                    _this2.setState({ FAQ: data });
+                }
+            });
         }
-
-        // // Show data in database
-        // componentDidMount(){
-
-        // }
 
         // // Fire when you search, watch, save etc (every time you complete action/ change)
         // componentDidUpdate(){
@@ -31265,7 +31241,7 @@ var Main = function (_React$Component) {
                 "div",
                 { className: "main-wrapper" },
                 _react2.default.createElement(_Nav2.default, null),
-                _react2.default.createElement(_FAQ2.default, null),
+                _react2.default.createElement(_FAQ2.default, { FAQ: this.state.FAQ }),
                 _react2.default.createElement(_Footer2.default, null)
             );
         }
@@ -31290,6 +31266,9 @@ var helpers = {
   // Helper examples below 
   // ==================================================================
 
+  getAllFAQ: function getAllFAQ() {
+    return axios.get("/api/faq");
+  },
   getAllData: function getAllData() {
     return axios.get("/data");
   },

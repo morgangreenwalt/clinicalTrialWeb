@@ -5,11 +5,14 @@ var helpers = {
 // Helper examples below 
 // ==================================================================
 
+  getAllFAQ: function() {
+      return axios.get("/api/faq");
+  },
   getAllData: function() {
         return axios.get("/data");
     },
 
-    watchingData: function() {
+  watchingData: function() {
       return axios.get("/watching", { watch: "true" });
   },
 

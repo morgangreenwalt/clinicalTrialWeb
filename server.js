@@ -14,7 +14,6 @@ var PORT = process.env.PORT || 3000;
 
 // requiring faq model
 var Faq = require('./models/Faq.js');
-var Article = require('./models/Article.js');
 //var Question = require('./models/question.js');
 
 var Zendesk = require('zendesk-node-api');
@@ -57,7 +56,6 @@ app.get('/api/faq', function (req, res) {
         }
         else {
             console.log(doc);
-            debugger;
             res.json(doc);
         }
     });

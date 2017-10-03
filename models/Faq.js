@@ -4,40 +4,40 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 // Create FAQ schema
-var FaqSchema = new Schema({
+var faqSchema = new Schema({
   // category is a required string
-  // "Company Q Originated with (WCT/PTR)": {
-  //   type: String
-  // },
-  // "#" : {
-  //   type: Number
-  // },
-  // "Date Question was asked": {
-  //   type: String
-  // },
-  // "Protocol section / Category": {
-  //   type: String
-  // },
+  "Company Q Originated with (WCT/PTR)": {
+    type: String
+  },
+  "#" : {
+    type: Number
+  },
+  "Date Question was asked": {
+    type: String
+  },
+  "Protocol section / Category": {
+    type: String
+  },
   
   "Category": {
     type: String
   },
-  // "TEMPORARY\rCategory notes (to simpllify": {
-  //   type: String
-  // },
+  "TEMPORARY\rCategory notes (to simpllify": {
+    type: String
+  },
   "Question": {
     type: String
   },
-  // "Clarification / Answer from Polynoma": {
-  //   type: String
-  // },
-  // "Comments\r(enter: Date/Last Name/Comment)": {
-  //   type: String
-  // }
+  "Clarification / Answer from Polynoma": {
+    type: String
+  },
+  "Comments\r(enter: Date/Last Name/Comment)": {
+    type: String
+  }
 });
 
 // Create the Article model with the ArticleSchema
-var Faq = mongoose.model("faqs", FaqSchema);
+var Faq = mongoose.model("faqs", faqSchema);
 
 // Export the model
 module.exports = Faq;
