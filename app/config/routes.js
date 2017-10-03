@@ -42,10 +42,18 @@ export const Routes = () => (
                 }
             }} />
             <Route exact path="/main" render={(props) => {
-                return <Main auth={auth}/>
+                if(!auth.isAuthenticated()){
+                    console.log('not');
+                    auth.login();
+                } else {
+                    return <Main auth={auth}/>
+                }
             }} />
             <Route exact path="/contact" component={Contact}/>
-            <Route exact path="/login" component={Login}/>
+            <Route exact path="/login" render={(props) => { 
+                handleAuthentication(props);
+                return <Login />
+            }}/>
             <Route exact path="/callback" render={(props) => {
                 handleAuthentication(props);
                 return <Redirect to="main" />

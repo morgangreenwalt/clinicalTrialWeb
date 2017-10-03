@@ -17048,6 +17048,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app")); // Including React & React DOM
 
+
+$(document).on("click", "#loginSubmit", function () {
+    // Grab the id associated with the article from the submit button
+    //   var thisId = $(this).respo("data-id");
+    //   var thisTitle = $(this).attr("data-title");
+    //   var thisLink = $(this).attr("data-link");
+    redirect("/main");
+
+    //   // Run a POST request to change the note, using what's entered in the inputs
+    //   $.ajax({
+    //     method: "POST",
+    //     url: "/saveArticles/" + thisId,
+    //     data: {
+    //       // Value taken from title input
+    //       title: thisTitle,
+    //       // Value taken from note textarea
+    //       link: thisLink,
+    //     }
+    //   })
+    //     // With that done
+    //     .done(function(data) {
+    //       // Log the response
+    //       console.log(data);
+    //       location.reload();
+    //     });
+});
+
+$(document).on("click", "#loginSubmit", function () {
+    redirect("/main");
+});
+
 /***/ }),
 /* 138 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -28360,10 +28391,18 @@ var Routes = exports.Routes = function Routes() {
                     }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/main", render: function render(props) {
-                    return _react2.default.createElement(_Main2.default, { auth: auth });
+                    if (!auth.isAuthenticated()) {
+                        console.log('not');
+                        auth.login();
+                    } else {
+                        return _react2.default.createElement(_Main2.default, { auth: auth });
+                    }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", component: _Login2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", render: function render(props) {
+                    handleAuthentication(props);
+                    return _react2.default.createElement(_Login2.default, null);
+                } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/callback", render: function render(props) {
                     handleAuthentication(props);
                     return _react2.default.createElement(_reactRouterDom.Redirect, { to: "main" });
@@ -32634,7 +32673,7 @@ var Auth = function () {
     this.auth0 = new _auth0Js2.default.WebAuth({
       domain: 'ttn10.auth0.com',
       clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: 'http://localhost:3000/login',
       audience: 'https://ttn10.auth0.com/userinfo',
       responseType: 'token id_token',
       scope: 'openid profile'
@@ -32662,9 +32701,9 @@ var Auth = function () {
         if (authResult && authResult.accessToken && authResult.idToken) {
           _this.setSession(authResult);
           console.log(_history2.default);
-          _history2.default.replace('/main');
+          _history2.default.replace('/login');
         } else if (err) {
-          _history2.default.replace('/main');
+          _history2.default.replace('/login');
           console.log(err);
           alert('Error: ' + err.error + '. Check the console for further details.');
         }
@@ -32689,7 +32728,7 @@ var Auth = function () {
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
       // navigate to the main route
-      _history2.default.replace('/main');
+      _history2.default.replace('/');
     }
   }, {
     key: 'isAuthenticated',
