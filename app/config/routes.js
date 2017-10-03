@@ -8,6 +8,7 @@ const history = createBrowserHistory()
 import Main from "../components/Main";
 import Contact from "../components/Contact";
 import Login from "../components/Login";
+import FAQ from "../components/FAQ";
 // import Index from "../index.js";
 import Auth from './Auth.js';
 

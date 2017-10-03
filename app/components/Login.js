@@ -6,16 +6,16 @@ export default class Login extends React.Component {
         return(
             <div className="container">
                 <div className="jumbotron">
-                    <h1 className="text-center"><i className="fa fa-facebook-square" aria-hidden="true"></i> Clinical Trial</h1>
+                    <h1 className="text-center"><i className="fa fa-facebook-square" aria-hidden="true"></i>Polynoma</h1>
                     <h3 className="text-justify">Bypass slow communication and login with your clinical trial number to get information and answers from doctors quickly and efficiencly!</h3><br/>
 
                     <form action="/login" method="POST">
                         <div className="form-group">
-                            <label for="trialNumber">Clinical Trial Number</label>
+                            <label for="trialNumber">Polynoma Clinical Trial Number</label>
                             <input type="text" name="trialNumber" className="form-control" id="trialNumber" placeholder="Clinical Trial Number"/>
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label for="username">Username</label>
                             <input type="text" name="username" className="form-control" id="username" placeholder="Username"/>
                         </div>
@@ -28,7 +28,7 @@ export default class Login extends React.Component {
                         <div className="form-group">
                             <label for="password">Re-enter Password</label>
                             <input type="password" name="password" className="form-control" id="password" placeholder="Re-enter Password"/>
-                        </div>
+                        </div> */}
 
                         <NavLink to="/">
                             <button type="submit" id ="loginSubmit" className="btn contactBtn btn-lg">Login</button>

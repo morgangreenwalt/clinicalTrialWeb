@@ -2,6 +2,14 @@
     font-family: 'Lato', sans-serif;
 }
 
+p {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
 .contactModule {
     background-color: #8DC73F;
     height: 300px;
@@ -19,8 +27,8 @@
 }
 
 .contactBtn2 {
-    border: 2.5px solid #000;
-    /* background-color: #8DC73F; */
+    border: 2.5px solid #8DC73F;
+    background-color: white;
 }
 
 .searchBtn {
@@ -37,7 +45,7 @@ a {
     background-image: url("https://pixnio.com/free-images/2017/03/25/2017-03-25-09-30-39.jpg");
     height: 300px;
     opacity: .6;
-    margin-top: -90px;
+    /* margin-top: -90px; */
     color: #000;
 }
 
@@ -66,6 +74,16 @@ a {
     left: 250px;
     top: 40px;
     font-size: 50px;
+}
+
+.letterA {
+    font-size: 30px;
+    color: #000;
+}
+
+.letter {
+    font-size: 30px;
+    color: #8DC73F;
 }
 
 .footer {

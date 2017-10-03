@@ -22,19 +22,19 @@ export default class FAQ extends React.Component {
                     <form action="/" method="POST">
                         <div className="row">
                             <div className="form-group col-md-8 col-md-offset-2">
-                                <label for="faqCategory"> Topics </label>
+                                <label htmlFor="faqCategory"> Topics </label>
                                 <select className="form-control" id="faqCategory">
-                                <option>Eligibility</option>
-                                <option>Recurrence</option>
-                                <option>Concomitant Meds</option>
-                                <option>Adverse Event</option>
-                                <option>Randomization</option>
-                                <option>Tumor Assessment</option>
-                                <option>Study Procedures</option>
-                                <option>Study Drug</option>
-                                <option>Labs</option>
-                                <option>Regulatory</option>
-                                <option>Other</option>
+                                <option value="eligibility" name="eligibility">Eligibility</option>
+                                <option value="recurrence" name="recurrence">Recurrence</option>
+                                <option value="concomitantMeds" name="concomitantMeds">Concomitant Meds</option>
+                                <option value="adverseEvent" name="adverseEvent">Adverse Event</option>
+                                <option value="randomization" name="randomization">Randomization</option>
+                                <option value="tumorAssessment" name="tumorAssessment">Tumor Assessment</option>
+                                <option value="studyProcedures" name="studyProcedures">Study Procedures</option>
+                                <option value="studyDrug" name="studyDrug">Study Drug</option>
+                                <option value="labs" name="labs">Labs</option>
+                                <option value="regulatory" name="regulatory">Regulatory</option>
+                                <option value="Other" name="other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -55,10 +55,18 @@ export default class FAQ extends React.Component {
                         <div className="row"> {console.log(this.props.FAQ)}   
                             {(this.props.FAQ) && this.props.FAQ.data.map((data)=>{
                                 return(
-                                    <div className="col-md-12">
-                                        <h4 className="question">Question: {data.Question}</h4>
-                                        <p className="answer">Answer: {data['Clarification / Answer from Polynoma']}</p>
+                                    <div className="col-md-12" key={data._id}>
+                                        <h4 className="question">
+                                            <span className="letter">Q:  </span> 
+                                            {data.Question}
+                                        </h4>
+                                        <p className="answer">
+                                            <span className="letterA">A:  </span> 
+                                            {data['Clarification / Answer from Polynoma']}
+                                        </p>
+                                        <hr/>
                                     </div>
+                                    
                                 )
                             })}
                         </div>

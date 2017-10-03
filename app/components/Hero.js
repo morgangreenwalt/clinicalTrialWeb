@@ -9,6 +9,9 @@ import FAQ from "./FAQ";
 export default class Hero extends React.Component {  
     constructor(props){
         super(props)
+        this.state = {
+            heroTitle: "",
+        };
     }
 
     render() {

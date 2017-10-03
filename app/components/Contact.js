@@ -79,7 +79,7 @@ export default class Contact extends React.Component {
             
             <div className="container">
                 <div className="row">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} style={{marginBottom: 30}}>
                     <div className="form-group">
                         <label for="firstName">First Name</label>
                         <input type="firstName" className="form-control" id="firstName" placeholder="Enter First Name"
@@ -126,7 +126,7 @@ export default class Contact extends React.Component {
                         </textarea>
                     </div>
                     
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn searchBtn">Submit</button>
                     </form>
                 </div> 
             </div> 
