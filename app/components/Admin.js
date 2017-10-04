@@ -64,7 +64,7 @@ export default class Admin extends React.Component {
         return(
             <div className="wrapper">
             <Nav/>
-            <Hero/>
+            <Hero title={"Admin Log"} bodyCopy={"For admin only: Please log all questions and answers to add to the database and include the respective topic."}/>
             
             <div className="container">
                 <div className="row">
