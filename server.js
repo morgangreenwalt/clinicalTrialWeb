@@ -47,6 +47,42 @@ mongoose.connect("mongodb://localhost/clinical_trial_db");
 
 var db = mongoose.connection;
 
+app.post('/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory', function (req, res) {
+
+    Faq.create({        
+        "Company Q Originated with (WCT/PTR)": '',
+        "#" : 1,
+        "Date Question was asked": '',
+        "Protocol section / Category": '',
+        "Category": req.params.adminCategory,
+        "TEMPORARY\rCategory notes (to simpllify": '',
+        "Question": req.params.adminQuestion,
+        "Clarification / Answer from Polynoma": req.params.adminAnswer,
+        "Comments\r(enter: Date/Last Name/Comment)": ''
+        }, function (err, newQuestion) {
+        if (err) return handleError(err);
+        // saved!
+        res.send(newQuestion);
+    });
+    console.log("params",req.params);
+
+});  
+
+// app.post("", function(req,res){
+//     var result ={};
+//     Result["Company Q Originated with (WCT/PTR)"] = '',
+//     Result["#"] = 1,
+//     Result["Date Question was asked"]= '',
+//     Result["Protocol section / Category"]= '',
+//     Result["Category"] = req.params.adminCategory,
+//     Result["TEMPORARY\rCategory notes (to simpllify"] = '',
+//     Result["Question"] = req.params.adminQuestion,
+//     Result["Clarification / Answer from Polynoma"] = req.params.adminAnswer,
+//     Result["Comments\r(enter: Date/Last Name/Comment)"] = ''
+
+//     var 
+// })
+    
 // route to receive all faq's from db
 app.get('/api/faq', function (req, res) {
     // console.log(Faq.find({}));
@@ -62,23 +98,6 @@ app.get('/api/faq', function (req, res) {
 
 });
 
-app.get('/api/zendesk/checkTickets', function (req, res) {
-
-
-    // zendesk.tickets.list('sort_by=status&sort_order=desc&external_id=ryan@arnett.org')
-    // .then(function(tickets){
-    //     console.log(tickets);
-    //     res.send(tickets);
-    //   });
-
-    request('https://clintrial.zendesk.com/api/v2/ticket_audits.json', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          console.log(body);
-          res.send(body);
-        }
-      });
-
-});
 
 app.get('/api/zendesk/newTicket/:comment/:firstName/:lastName/:email', function (req, res) {
 

@@ -13,12 +13,9 @@ export default class Admin extends React.Component {
         
         this.state = {
             foo: null,
-            firstName: '',
-            lastName: '',
-            email: '',
-            topic: '',
-            question: '',
-            ticket: ''
+            adminQuestion: '',
+            adminAnswer: '',
+            adminCategory: 'Eligibility',
           };
           
           this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,6 +23,7 @@ export default class Admin extends React.Component {
     }
 
     handleInputChange(event) {
+        
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.id;
@@ -36,33 +34,31 @@ export default class Admin extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("this submit was handled");
-        console.log('A ticket was submitted: ' , this.state);
-        var firstName = this.state.firstName;
-        var lastName = this.state.lastName;
-        var email = this.state.email;
-        var question = this.state.question;
+        console.log('An admin FAQ is trying to submit: ' , this.state);
+        var adminQuestion = this.state.adminQuestion;
+        var adminAnswer = this.state.adminAnswer;
+        var adminCategory = this.state.adminCategory;
         event.preventDefault();
-        this.sendTicket(question, firstName, lastName, email);
+        this.sendQuestion(adminQuestion, adminAnswer, adminCategory);
     }
 
-    // sendTicket(question, firstName, lastName, email) {
-
-    //     fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
-    //     .then(response => response.json())
-    //     .then((ticket) => { this.setState({ 
-    //         foo: null,
-    //         firstName: '',
-    //         lastName: '',
-    //         email: '',
-    //         topic: '',
-    //         question: '',
-    //         ticket: ''
-    //         });
-    //         alert('Thanks '+firstName+'! Your question has been submitted.');
-    //         this.forceUpdate();
-    //     });
-    // }
+    sendQuestion(adminQuestion, adminAnswer, adminCategory) {
+        console.log(adminQuestion);
+        console.log(adminAnswer);
+        console.log(adminCategory);
+        fetch('/api/faq/adminAdd/'+adminQuestion+'/'+adminAnswer+'/'+adminCategory)
+        .then(response => console.log(response))
+        .then((ticket) => { this.setState({ 
+            foo: null,
+            adminQuestion: '',
+            adminAnswer: '',
+            adminCategory: '',
+            });
+            alert('You have submitted this question/answer to the '+adminCategory+' category.' 
+            +'\nClients can now find this submission on the FAQ page.');
+            this.forceUpdate();
+        });
+    }
 
     render() {
         return(
@@ -75,20 +71,22 @@ export default class Admin extends React.Component {
                 <form onSubmit={this.handleSubmit} style={{marginBottom: 30}}>
                     <div className="form-group">
                         <label for="topic">Select Category</label>
-                        <select className="form-control" id="topic">              
+                        <select className="form-control" id="adminCategory"
+                            value={this.state.adminCategory}
+                            onChange={this.handleInputChange}>>              
                             {/* value={this.state.subject}
                             onChange={this.handleInputChange}> */}
-                        <option>Eligibility</option>
-                        <option>Recurrence</option>
-                        <option>Concomitant Meds</option>
-                        <option>Adverse Event</option>
-                        <option>Randomization</option>
-                        <option>Tumor Assessment</option>
-                        <option>Study Procedures</option>
-                        <option>Study Drug</option>
-                        <option>Labs</option>
-                        <option>Regulatory</option>
-                        <option>Other</option>
+                        <option value='Eligibility'>Eligibility</option>
+                        <option value='Recurrence'>Recurrence</option>
+                        <option value='Concomitant Meds'>Concomitant Meds</option>
+                        <option value='Adverse Event'>Adverse Event</option>
+                        <option value='Randomization'>Randomization</option>
+                        <option value='Tumor Assessment'>Tumor Assessment</option>
+                        <option value='Study Procedures'>Study Procedures</option>
+                        <option value='Study Drug'>Study Drug</option>
+                        <option value='Labs'>Labs</option>
+                        <option value='Regulatory'>Regulatory</option>
+                        <option value='Other'>Other</option>
                         </select>
                     </div>
                     

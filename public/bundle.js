@@ -32707,12 +32707,9 @@ var Admin = function (_React$Component) {
 
         _this.state = {
             foo: null,
-            firstName: '',
-            lastName: '',
-            email: '',
-            topic: '',
-            question: '',
-            ticket: ''
+            adminQuestion: '',
+            adminAnswer: '',
+            adminCategory: 'Eligibility'
         };
 
         _this.handleInputChange = _this.handleInputChange.bind(_this);
@@ -32723,6 +32720,7 @@ var Admin = function (_React$Component) {
     _createClass(Admin, [{
         key: "handleInputChange",
         value: function handleInputChange(event) {
+
             var target = event.target;
             var value = target.type === 'checkbox' ? target.checked : target.value;
             var name = target.id;
@@ -32732,34 +32730,34 @@ var Admin = function (_React$Component) {
     }, {
         key: "handleSubmit",
         value: function handleSubmit(event) {
-            console.log("this submit was handled");
-            console.log('A ticket was submitted: ', this.state);
-            var firstName = this.state.firstName;
-            var lastName = this.state.lastName;
-            var email = this.state.email;
-            var question = this.state.question;
+            console.log('An admin FAQ is trying to submit: ', this.state);
+            var adminQuestion = this.state.adminQuestion;
+            var adminAnswer = this.state.adminAnswer;
+            var adminCategory = this.state.adminCategory;
             event.preventDefault();
-            this.sendTicket(question, firstName, lastName, email);
+            this.sendQuestion(adminQuestion, adminAnswer, adminCategory);
         }
+    }, {
+        key: "sendQuestion",
+        value: function sendQuestion(adminQuestion, adminAnswer, adminCategory) {
+            var _this2 = this;
 
-        // sendTicket(question, firstName, lastName, email) {
-
-        //     fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
-        //     .then(response => response.json())
-        //     .then((ticket) => { this.setState({ 
-        //         foo: null,
-        //         firstName: '',
-        //         lastName: '',
-        //         email: '',
-        //         topic: '',
-        //         question: '',
-        //         ticket: ''
-        //         });
-        //         alert('Thanks '+firstName+'! Your question has been submitted.');
-        //         this.forceUpdate();
-        //     });
-        // }
-
+            console.log(adminQuestion);
+            console.log(adminAnswer);
+            console.log(adminCategory);
+            fetch('/api/faq/adminAdd/' + adminQuestion + '/' + adminAnswer + '/' + adminCategory).then(function (response) {
+                return console.log(response);
+            }).then(function (ticket) {
+                _this2.setState({
+                    foo: null,
+                    adminQuestion: '',
+                    adminAnswer: '',
+                    adminCategory: ''
+                });
+                alert('You have submitted this question/answer to the ' + adminCategory + ' category.' + '\nClients can now find this submission on the FAQ page.');
+                _this2.forceUpdate();
+            });
+        }
     }, {
         key: "render",
         value: function render() {
@@ -32787,60 +32785,63 @@ var Admin = function (_React$Component) {
                                 ),
                                 _react2.default.createElement(
                                     "select",
-                                    { className: "form-control", id: "topic" },
+                                    { className: "form-control", id: "adminCategory",
+                                        value: this.state.adminCategory,
+                                        onChange: this.handleInputChange },
+                                    ">",
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Eligibility" },
                                         "Eligibility"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Recurrence" },
                                         "Recurrence"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Concomitant Meds" },
                                         "Concomitant Meds"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Adverse Event" },
                                         "Adverse Event"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Randomization" },
                                         "Randomization"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Tumor Assessment" },
                                         "Tumor Assessment"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Study Procedures" },
                                         "Study Procedures"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Study Drug" },
                                         "Study Drug"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Labs" },
                                         "Labs"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Regulatory" },
                                         "Regulatory"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        null,
+                                        { value: "Other" },
                                         "Other"
                                     )
                                 )
