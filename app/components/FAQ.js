@@ -83,21 +83,6 @@ export default class FAQ extends React.Component {
                     <form action="/" method="POST" onSubmit={this.handleSubmit}>
                         <div className="row">
                             <div className="form-group col-md-8 col-md-offset-2">
-<<<<<<< HEAD
-                                <label htmlFor="faqCategory"> Topics </label>
-                                <select className="form-control" id="faqCategory">
-                                <option value="eligibility" name="eligibility">Eligibility</option>
-                                <option value="recurrence" name="recurrence">Recurrence</option>
-                                <option value="concomitantMeds" name="concomitantMeds">Concomitant Meds</option>
-                                <option value="adverseEvent" name="adverseEvent">Adverse Event</option>
-                                <option value="randomization" name="randomization">Randomization</option>
-                                <option value="tumorAssessment" name="tumorAssessment">Tumor Assessment</option>
-                                <option value="studyProcedures" name="studyProcedures">Study Procedures</option>
-                                <option value="studyDrug" name="studyDrug">Study Drug</option>
-                                <option value="labs" name="labs">Labs</option>
-                                <option value="regulatory" name="regulatory">Regulatory</option>
-                                <option value="Other" name="other">Other</option>
-=======
                                 <label for="faqCategory"> Topics </label>
                                 <select className="form-control" id="faqCategory" value={this.state.faqCategory} onChange={this.handleChange}>
                                 <option value = "Eligibility">Eligibility</option>
@@ -111,7 +96,6 @@ export default class FAQ extends React.Component {
                                 <option value = "Labs">Labs</option>
                                 <option value = "Regulatory">Regulatory</option>
                                 <option value = "Other">Other</option>
->>>>>>> tinman2
                                 </select>
                             </div>
                         </div>

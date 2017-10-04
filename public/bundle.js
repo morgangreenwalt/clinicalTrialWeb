@@ -8924,9 +8924,299 @@ exports.default = Footer;
 
 /***/ }),
 /* 77 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (86:1)\n\n\u001b[0m \u001b[90m 84 | \u001b[39m                        \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"row\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 85 | \u001b[39m                            \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"form-group col-md-8 col-md-offset-2\"\u001b[39m\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 86 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 87 | \u001b[39m                                \u001b[33m<\u001b[39m\u001b[33mlabel\u001b[39m htmlFor\u001b[33m=\u001b[39m\u001b[32m\"faqCategory\"\u001b[39m\u001b[33m>\u001b[39m \u001b[33mTopics\u001b[39m \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mlabel\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 88 | \u001b[39m                                \u001b[33m<\u001b[39m\u001b[33mselect\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"form-control\"\u001b[39m id\u001b[33m=\u001b[39m\u001b[32m\"faqCategory\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 89 | \u001b[39m                                \u001b[33m<\u001b[39m\u001b[33moption\u001b[39m value\u001b[33m=\u001b[39m\u001b[32m\"eligibility\"\u001b[39m name\u001b[33m=\u001b[39m\u001b[32m\"eligibility\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mEligibility\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33moption\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _helpers = __webpack_require__(265);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+var _Hero = __webpack_require__(78);
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FAQ = function (_React$Component) {
+    _inherits(FAQ, _React$Component);
+
+    // return(
+    //     <div>
+    //     {this.props.faq.map((data, i) => {
+
+    function FAQ(props) {
+        _classCallCheck(this, FAQ);
+
+        var _this = _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).call(this, props));
+
+        _this.state = {
+            FAQ: "",
+            renderFAQ: "",
+            faqCategory: ""
+        };
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    // // Show data in database
+
+
+    _createClass(FAQ, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _helpers2.default.getAllFAQ().then(function (data) {
+                if (data !== "") {
+                    _this2.setState({ FAQ: data.data, renderFAQ: data.data });
+                }
+            });
+            console.log("i just mounted");
+        }
+        // handleSubmit(event){
+        //     event.preventDefaut();
+        //     const newFAQ = [];
+        //     for (var i =0; i< this.state.FAQ.length; i++){
+        //         if(this.state.FAQ[i].Category == this.state.faqCategory){
+        //             newFAQ.push(this.state.FAQ[i])
+        //         }
+
+        //     }
+        //     this.setState({
+        //         FAQ: newFAQ,
+        //     })
+        //     // this.forceUpdate();
+        //     console.log(this.state.faqCategory);
+        //     console.log("im in the middle")
+        //     // console.log(this.state.FAQ);
+
+        // }
+
+    }, {
+        key: "handleChange",
+        value: function handleChange(event) {
+            var property = event.target.id;
+            var value = event.target.value;
+
+            this.setState({
+                faqCategory: value
+            });
+            console.log("event.target: " + event.target);
+            console.log("event.target.id: " + event.target.id);
+            console.log("event.target.value: " + event.target.value);
+            console.log("this.state.faqCategory: " + this.state.faqCategory);
+            var newFAQ = [];
+            console.log(this.state.FAQ);
+            for (var i = 0; i < this.state.FAQ.length; i++) {
+                if (this.state.FAQ[i].Category == event.target.value) {
+                    newFAQ.push(this.state.FAQ[i]);
+                }
+            }
+            console.log("newFAQ", newFAQ);
+            this.setState({
+                renderFAQ: newFAQ
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                { className: "faq" },
+                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic and/ or search specific words or phrases. If your question is still not answered, please contact us for more information." }),
+                _react2.default.createElement(
+                    "div",
+                    { className: "container" },
+                    _react2.default.createElement(
+                        "form",
+                        { action: "/", method: "POST", onSubmit: this.handleSubmit },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "row" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group col-md-8 col-md-offset-2" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "faqCategory" },
+                                    " Topics "
+                                ),
+                                _react2.default.createElement(
+                                    "select",
+                                    { className: "form-control", id: "faqCategory", value: this.state.faqCategory, onChange: this.handleChange },
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Eligibility" },
+                                        "Eligibility"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Recurrence" },
+                                        "Recurrence"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Concomitant Meds" },
+                                        "Concomitant Meds"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Adverse Event" },
+                                        "Adverse Event"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Randomization" },
+                                        "Randomization"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Tumor Assessment" },
+                                        "Tumor Assessment"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Study Procedures" },
+                                        "Study Procedures"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Study Drug" },
+                                        "Study Drug"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Labs" },
+                                        "Labs"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Regulatory" },
+                                        "Regulatory"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        { value: "Other" },
+                                        "Other"
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "row" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group col-md-7 col-md-offset-2" },
+                                _react2.default.createElement("input", { type: "text", name: "searchInquiry", className: "form-control", id: "searchInquiry", placeholder: "Enter Search Here" })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "col-md-2" },
+                                _react2.default.createElement(
+                                    _reactRouterDom.NavLink,
+                                    { to: "/" },
+                                    _react2.default.createElement(
+                                        "button",
+                                        { type: "submit", id: "loginSubmit", className: "btn searchBtn btn-md" },
+                                        "Search"
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "questions" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "row" },
+                            this.state.renderFAQ && this.state.renderFAQ.map(function (data) {
+                                return _react2.default.createElement(
+                                    "div",
+                                    { className: "col-md-12", key: data._id },
+                                    _react2.default.createElement(
+                                        "h4",
+                                        { className: "question" },
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "letter" },
+                                            "Q:  "
+                                        ),
+                                        data.Question
+                                    ),
+                                    _react2.default.createElement(
+                                        "p",
+                                        { className: "answer" },
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "letterA" },
+                                            "A:  "
+                                        ),
+                                        data['Clarification / Answer from Polynoma']
+                                    ),
+                                    _react2.default.createElement("hr", null)
+                                );
+                            })
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "contactModule text-center" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "row" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "container" },
+                            _react2.default.createElement(
+                                "h2",
+                                { className: "contactText" },
+                                "Can't Find Your Answer?"
+                            ),
+                            _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { to: "/contact" },
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-secondary btn-lg contactBtn" },
+                                    "Contact Us"
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return FAQ;
+}(_react2.default.Component);
+
+exports.default = FAQ;
 
 /***/ }),
 /* 78 */
