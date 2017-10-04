@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morgangreenwalt/boots-react.git"
+    "url": "git+https://github.com/morgangreenwalt/clinicalTrialWeb.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/morgangreenwalt/boots-react/issues"
+    "url": "https://github.com/morgangreenwalt/clinicalTrialWeb/issues"
   },
-  "homepage": "https://github.com/morgangreenwalt/boots-react#readme",
+  "homepage": "https://github.com/morgangreenwalt/clinicalTrialWeb#readme",
   "dependencies": {
     "auth0-js": "^8.10.1",
     "axios": "^0.16.2",
