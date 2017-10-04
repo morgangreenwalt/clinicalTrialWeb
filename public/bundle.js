@@ -4653,7 +4653,7 @@ var FAQ = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { className: "faq" },
-                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic and/ or search specific words or phrases. If your question is still not answered, please contact us for more information." }),
+                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic. If your question is still not answered, please contact us for more information." }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
@@ -4668,7 +4668,7 @@ var FAQ = function (_React$Component) {
                                 { className: "form-group col-md-8 col-md-offset-2" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "faqCategory" },
+                                    { "for": "faqCategory", style: { marginTop: 30 } },
                                     " Topics "
                                 ),
                                 _react2.default.createElement(
@@ -4728,28 +4728,6 @@ var FAQ = function (_React$Component) {
                                         "option",
                                         { value: "Other" },
                                         "Other"
-                                    )
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "row" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "form-group col-md-7 col-md-offset-2" },
-                                _react2.default.createElement("input", { type: "text", name: "searchInquiry", className: "form-control", id: "searchInquiry", placeholder: "Enter Search Here" })
-                            ),
-                            _react2.default.createElement(
-                                "div",
-                                { className: "col-md-2" },
-                                _react2.default.createElement(
-                                    _reactRouterDom.NavLink,
-                                    { to: "/" },
-                                    _react2.default.createElement(
-                                        "button",
-                                        { type: "submit", id: "loginSubmit", className: "btn searchBtn btn-md" },
-                                        "Search"
                                     )
                                 )
                             )
