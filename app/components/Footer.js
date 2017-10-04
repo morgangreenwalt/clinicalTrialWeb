@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="footer">
         <footer className="footer">
             <div className="container">
-            <div className="footerSocial">
+            {/* <div className="footerSocial">
                 <span className="title">Connect With Us</span>
                     <ul className="social-networks">
                         <li><NavLink to=""><span className="icon-twitter"></span></NavLink></li>
@@ -16,10 +16,22 @@ const Footer = () => (
                         <li><NavLink to=""><span className="icon-youtube"></span></NavLink></li>
                         <li><NavLink to=""><span className="icon-pinterest"></span></NavLink></li>
                     </ul>
-                <span className="copyright">&copy;Refundo, Inc.</span>
-            </div>
+            </div> */}
 
-            <p className="text-muted text-center">&copy; Clinical Trial App</p>
+                <div id="navbar" className="navbar-collapse collapse">
+                    <ul className="nav navbar-nav"></ul>
+                    <ul className="navbar-nav navbar-right">
+
+                        <li className="footer-item">
+                            <NavLink to="https://polynoma.com/privacy-policy/" target="_blank">Privacy Policy</NavLink>
+                        </li>
+
+                        <li className="footer-item">
+                            <NavLink to="https://polynoma.com/terms-of-use/" target="_blank">Terms of Use</NavLink>
+                        </li>
+
+                    </ul>
+                </div>    
             </div>
         </footer>
     </div>

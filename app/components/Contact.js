@@ -75,7 +75,7 @@ export default class Contact extends React.Component {
         return(
             <div className="wrapper">
             <Nav/>
-            <Hero/>
+            <Hero title={"Contact Us"} bodyCopy={"For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you."}/>
             
             <div className="container">
                 <div className="row">

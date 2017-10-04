@@ -13,11 +13,10 @@ export default class FAQ extends React.Component {
     }
 
     render() {
-        
 
         return(
             <div className="faq">
-                <Hero/> 
+                <Hero title={"Frequently Asked Questions"} bodyCopy={"Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic and/ or search specific words or phrases. If your question is still not answered, please contact us for more information."}/> 
                 <div className="container">
                     <form action="/" method="POST">
                         <div className="row">
