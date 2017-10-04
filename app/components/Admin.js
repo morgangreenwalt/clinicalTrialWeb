@@ -46,7 +46,7 @@ export default class Admin extends React.Component {
         console.log(adminQuestion);
         console.log(adminAnswer);
         console.log(adminCategory);
-        fetch('/api/faq/adminAdd/'+adminQuestion+'/'+adminAnswer+'/'+adminCategory)
+        fetch('/api/faq/adminAdd/'+adminQuestion+'/'+adminAnswer+'/'+adminCategory,{method:"POST"})
         .then(response => console.log(response))
         .then((ticket) => { this.setState({ 
             foo: null,

@@ -47,7 +47,7 @@ mongoose.connect("mongodb://localhost/clinical_trial_db");
 
 var db = mongoose.connection;
 
-app.post('/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory', function (req, res) {
+app.post("/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory", function (req, res) {
 
     Faq.create({        
         "Company Q Originated with (WCT/PTR)": '',
@@ -62,26 +62,38 @@ app.post('/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory', functio
         }, function (err, newQuestion) {
         if (err) return handleError(err);
         // saved!
+        console.log("hi there")
         res.send(newQuestion);
     });
     console.log("params",req.params);
 
 });  
 
-// app.post("", function(req,res){
-//     var result ={};
-//     Result["Company Q Originated with (WCT/PTR)"] = '',
-//     Result["#"] = 1,
-//     Result["Date Question was asked"]= '',
-//     Result["Protocol section / Category"]= '',
-//     Result["Category"] = req.params.adminCategory,
-//     Result["TEMPORARY\rCategory notes (to simpllify"] = '',
-//     Result["Question"] = req.params.adminQuestion,
-//     Result["Clarification / Answer from Polynoma"] = req.params.adminAnswer,
-//     Result["Comments\r(enter: Date/Last Name/Comment)"] = ''
+app.post("/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory", function(req,res){
+    var result ={};
+    Result["Company Q Originated with (WCT/PTR)"] = '',
+    Result["#"] = 1,
+    Result["Date Question was asked"]= '',
+    Result["Protocol section / Category"]= '',
+    Result["Category"] = req.params.adminCategory,
+    Result["TEMPORARY\rCategory notes (to simpllify"] = '',
+    Result["Question"] = req.params.adminQuestion,
+    Result["Clarification / Answer from Polynoma"] = req.params.adminAnswer,
+    Result["Comments\r(enter: Date/Last Name/Comment)"] = ''
 
-//     var 
-// })
+    var entry = new Faq(result);
+
+    entry.save(function(err, doc) {
+        // Log any errors
+        if (err) {
+          console.log(err);
+        }
+        // Or log the doc
+        else {
+          res.redirect("/");
+        }
+    });
+})
     
 // route to receive all faq's from db
 app.get('/api/faq', function (req, res) {
