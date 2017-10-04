@@ -8,6 +8,9 @@ var helpers = {
   getAllFAQ: function() {
       return axios.get("/api/faq");
   },
+  getAllFAQWithCategory: function() {
+    return axios.get("/api/faq/:category",{Category: "Protocol"});
+  },
   getAllData: function() {
         return axios.get("/data");
     },
