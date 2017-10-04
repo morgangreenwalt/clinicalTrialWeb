@@ -38,12 +38,12 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 // mLab Heroku Connection
-// mongoose.connect("mongodb://heroku_73sw5d1s:j1f5g4f7m1v3rvu7bfamvq26i1@ds129344.mlab.com:29344/heroku_73sw5d1s");
-// var db = mongoose.connection;
+mongoose.connect("mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg");
+var db = mongoose.connection;
 
-// Database configuration with mongoose (Local connection)
-mongoose.connect("mongodb://localhost/clinical_trial_db");
-// mongoose.connect("mongodb://localhost/newsScraping");
+// // Database configuration with mongoose (Local connection)
+// mongoose.connect("mongodb://localhost/clinical_trial_db");
+// // mongoose.connect("mongodb://localhost/newsScraping");
 
 var db = mongoose.connection;
 
