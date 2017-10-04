@@ -4600,7 +4600,7 @@ var FAQ = function (_React$Component) {
                     _this2.setState({ FAQ: data.data, renderFAQ: data.data });
                 }
             });
-            console.log("i just mounted");
+            // console.log("i just mounted")
         }
         // handleSubmit(event){
         //     event.preventDefaut();
@@ -4630,18 +4630,18 @@ var FAQ = function (_React$Component) {
             this.setState({
                 faqCategory: value
             });
-            console.log("event.target: " + event.target);
-            console.log("event.target.id: " + event.target.id);
-            console.log("event.target.value: " + event.target.value);
-            console.log("this.state.faqCategory: " + this.state.faqCategory);
+            // console.log("event.target: " + event.target)
+            // console.log("event.target.id: " +event.target.id)
+            // console.log("event.target.value: " +event.target.value)
+            // console.log("this.state.faqCategory: " +this.state.faqCategory)
             var newFAQ = [];
-            console.log(this.state.FAQ);
+            // console.log(this.state.FAQ);
             for (var i = 0; i < this.state.FAQ.length; i++) {
                 if (this.state.FAQ[i].Category == event.target.value) {
                     newFAQ.push(this.state.FAQ[i]);
                 }
             }
-            console.log("newFAQ", newFAQ);
+            // console.log("newFAQ", newFAQ)
             this.setState({
                 renderFAQ: newFAQ
             });
@@ -17096,38 +17096,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Renders the contents according to the route page.
 
-(0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app")); // Including React & React DOM
+(0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app"));
 
+// $(document).on("click", "#searchInquiry", function() {
+// Grab the id associated with the article from the submit button
+//   var thisId = $(this).respo("data-id");
+//   var thisTitle = $(this).attr("data-title");
+//   var thisLink = $(this).attr("data-link");
 
-$(document).on("click", "#searchInquiry", function () {
-    // Grab the id associated with the article from the submit button
-    //   var thisId = $(this).respo("data-id");
-    //   var thisTitle = $(this).attr("data-title");
-    //   var thisLink = $(this).attr("data-link");
-    console.log("i just submitted a question yo!");
+//   // Run a POST request to change the note, using what's entered in the inputs
+//   $.ajax({
+//     method: "POST",
+//     url: "/saveArticles/" + thisId,
+//     data: {
+//       // Value taken from title input
+//       title: thisTitle,
+//       // Value taken from note textarea
+//       link: thisLink,
+//     }
+//   })
+//     // With that done
+//     .done(function(data) {
+//       // Log the response
+//       console.log(data);
+//       location.reload();
+//     });
+// });
 
-    //   // Run a POST request to change the note, using what's entered in the inputs
-    //   $.ajax({
-    //     method: "POST",
-    //     url: "/saveArticles/" + thisId,
-    //     data: {
-    //       // Value taken from title input
-    //       title: thisTitle,
-    //       // Value taken from note textarea
-    //       link: thisLink,
-    //     }
-    //   })
-    //     // With that done
-    //     .done(function(data) {
-    //       // Log the response
-    //       console.log(data);
-    //       location.reload();
-    //     });
-});
-
-$(document).on("click", "#loginSubmit", function () {
-    redirect("/main");
-});
+// $(document).on("click", "#loginSubmit", function() {
+//     redirect("/main");
+// });
+// Including React & React DOM
 
 /***/ }),
 /* 139 */
@@ -28461,6 +28460,10 @@ var Routes = exports.Routes = function Routes() {
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/callback", render: function render(props) {
                     handleAuthentication(props);
                     return _react2.default.createElement(_reactRouterDom.Redirect, { to: "main" });
+                } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/logout", render: function render(props) {
+                    auth.logout();
+                    return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/" });
                 } })
         )
     );
@@ -32578,6 +32581,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(20);
 
+var _history = __webpack_require__(328);
+
+var _history2 = _interopRequireDefault(_history);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32592,7 +32599,33 @@ var Login = function (_React$Component) {
     function Login() {
         _classCallCheck(this, Login);
 
-        return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
+
+        _this.handleChange = function (event) {
+            _this.setState({ trialNumber: event.target.value });
+        };
+
+        _this.handleSubmit = function (event) {
+            console.log(_this.state.trialNumber);
+            if (_this.state.trialNumber == "1122") {
+                // event.preventDefault();
+                _history2.default.push('/main');
+            } else {
+                event.preventDefault();
+                // alert("Please enter the correct trial number.")
+                _this.setState({ error: true });
+            }
+        };
+
+        _this.trialNumberValidation = function (event) {
+            return _this.state.trialNumber == "1122";
+        };
+
+        _this.state = {
+            trialNumber: "",
+            error: ""
+        };
+        return _this;
     }
 
     _createClass(Login, [{
@@ -32618,7 +32651,7 @@ var Login = function (_React$Component) {
                     _react2.default.createElement("br", null),
                     _react2.default.createElement(
                         "form",
-                        { action: "/login", method: "POST" },
+                        { onSubmit: this.handleSubmit },
                         _react2.default.createElement(
                             "div",
                             { className: "form-group" },
@@ -32627,16 +32660,30 @@ var Login = function (_React$Component) {
                                 { "for": "trialNumber" },
                                 "Polynoma Clinical Trial Number"
                             ),
-                            _react2.default.createElement("input", { type: "text", name: "trialNumber", className: "form-control", id: "trialNumber", placeholder: "Clinical Trial Number" })
+                            _react2.default.createElement("input", { type: "text", name: "trialNumber", className: "form-control", id: "trialNumber", placeholder: "Clinical Trial Number", value: this.state.trialNumber, onChange: this.handleChange })
+                        ),
+                        _react2.default.createElement("div", { id: "error" }),
+                        this.state.error && _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement(
+                                "font",
+                                { color: "red" },
+                                _react2.default.createElement(
+                                    "strong",
+                                    null,
+                                    _react2.default.createElement(
+                                        "em",
+                                        null,
+                                        "* Please input a correct trial number *"
+                                    )
+                                )
+                            )
                         ),
                         _react2.default.createElement(
-                            _reactRouterDom.NavLink,
-                            { to: "/" },
-                            _react2.default.createElement(
-                                "button",
-                                { type: "submit", id: "loginSubmit", className: "btn contactBtn btn-lg" },
-                                "Login"
-                            )
+                            "button",
+                            { type: "submit", id: "loginSubmit", className: "btn contactBtn btn-lg" },
+                            "Login"
                         )
                     )
                 )

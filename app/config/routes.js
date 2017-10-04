@@ -60,7 +60,10 @@ export const Routes = () => (
                 handleAuthentication(props);
                 return <Redirect to="main" />
             }} />
-            
+            <Route exact path="/logout" render={(props) => {
+                auth.logout();
+                return <Redirect to="/" />
+            }} />
         </Switch>    
     </Router>
 );

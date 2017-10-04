@@ -27,7 +27,7 @@ export default class FAQ extends React.Component {
                 this.setState({ FAQ: data.data, renderFAQ: data.data });
             }
         })
-        console.log("i just mounted")
+        // console.log("i just mounted")
     }
     // handleSubmit(event){
     //     event.preventDefaut();
@@ -54,19 +54,19 @@ export default class FAQ extends React.Component {
         this.setState({
             faqCategory: value
         })
-        console.log("event.target: " + event.target)
-        console.log("event.target.id: " +event.target.id)
-        console.log("event.target.value: " +event.target.value)
-        console.log("this.state.faqCategory: " +this.state.faqCategory)
+        // console.log("event.target: " + event.target)
+        // console.log("event.target.id: " +event.target.id)
+        // console.log("event.target.value: " +event.target.value)
+        // console.log("this.state.faqCategory: " +this.state.faqCategory)
         var newFAQ = [];
-        console.log(this.state.FAQ);
+        // console.log(this.state.FAQ);
         for (var i =0; i< this.state.FAQ.length; i++){
             if(this.state.FAQ[i].Category == event.target.value){
                 newFAQ.push(this.state.FAQ[i])
             }
 
         }
-        console.log("newFAQ", newFAQ)
+        // console.log("newFAQ", newFAQ)
         this.setState({
             renderFAQ: newFAQ,
         })
