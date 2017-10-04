@@ -9,9 +9,7 @@ import FAQ from "./FAQ";
 export default class Hero extends React.Component {  
     constructor(props){
         super(props)
-        this.state = {
-            heroTitle: "",
-        };
+       
     }
 
     render() {
@@ -21,8 +19,8 @@ export default class Hero extends React.Component {
                 <div className="faqHero"></div>
                     <div className="container">
                         <div className="faqMain">
-                            <h2 className="faqTitle">Frequenty Asked Questions</h2>
-                            <p className="faqCopy">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                            <h2 className="faqTitle">{this.props.title}</h2>
+                            <p className="faqCopy">{this.props.bodyCopy}</p>
                         </div>
                 </div>    
             </div>         

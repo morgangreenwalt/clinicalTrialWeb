@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import FAQ from "./FAQ";
 import Hero from "./Hero";
 
-export default class Contact extends React.Component {  
+export default class Admin extends React.Component {  
     constructor(props){
         super(props)
         
@@ -23,13 +23,7 @@ export default class Contact extends React.Component {
           
           this.handleInputChange = this.handleInputChange.bind(this);
           this.handleSubmit = this.handleSubmit.bind(this);
-        }
-      
-        // componentDidMount() {
-        //   fetch("/api/zendesk/newTicket")
-        //     .then(response => response.json())
-        //     .then((foo) => { this.setState({ foo }); });
-        // }
+    }
 
     handleInputChange(event) {
         const target = event.target;
@@ -52,55 +46,35 @@ export default class Contact extends React.Component {
         this.sendTicket(question, firstName, lastName, email);
     }
 
-    sendTicket(question, firstName, lastName, email) {
+    // sendTicket(question, firstName, lastName, email) {
 
-        fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
-        .then(response => response.json())
-        .then((ticket) => { this.setState({ 
-            foo: null,
-            firstName: '',
-            lastName: '',
-            email: '',
-            topic: '',
-            question: '',
-            ticket: ''
-            });
-            alert('Thanks '+firstName+'! Your question has been submitted.');
-            this.forceUpdate();
-        });
-    }
+    //     fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
+    //     .then(response => response.json())
+    //     .then((ticket) => { this.setState({ 
+    //         foo: null,
+    //         firstName: '',
+    //         lastName: '',
+    //         email: '',
+    //         topic: '',
+    //         question: '',
+    //         ticket: ''
+    //         });
+    //         alert('Thanks '+firstName+'! Your question has been submitted.');
+    //         this.forceUpdate();
+    //     });
+    // }
 
     render() {
-        console.log("component loaded!");
         return(
             <div className="wrapper">
             <Nav/>
-            <Hero title={"Contact Us"} bodyCopy={"For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you."}/>
+            <Hero/>
             
             <div className="container">
                 <div className="row">
                 <form onSubmit={this.handleSubmit} style={{marginBottom: 30}}>
                     <div className="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="firstName" className="form-control" id="firstName" placeholder="Enter First Name"
-                            value={this.state.firstName}
-                            onChange={this.handleInputChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="lastName" className="form-control" id="lastName" placeholder="Enter Last Name"
-                            value={this.state.lastName}
-                            onChange={this.handleInputChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" className="form-control" id="email" placeholder="Enter Email"
-                            value={this.state.email}
-                            onChange={this.handleInputChange}/>
-                    </div>
-            
-                    <div className="form-group">
-                        <label for="topic">Select Topic</label>
+                        <label for="topic">Select Category</label>
                         <select className="form-control" id="topic">              
                             {/* value={this.state.subject}
                             onChange={this.handleInputChange}> */}
@@ -119,11 +93,18 @@ export default class Contact extends React.Component {
                     </div>
                     
                     <div className="form-group">
-                        <label for="question">Question</label>
-                        <textarea className="form-control" id="question" rows="3"
-                            value={this.state.question}
+                        <label for="adminQuestion">Question</label>
+                        <textarea className="form-control" id="adminQuestion" rows="3"
+                            value={this.state.adminQuestion}
                             onChange={this.handleInputChange}>
                         </textarea>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label for="adminAnswer">Answer</label>
+                        <input type="firstName" className="form-control" id="adminAnswer"
+                            value={this.state.adminAnswer}
+                            onChange={this.handleInputChange}/>
                     </div>
                     
                     <button type="submit" className="btn searchBtn">Submit</button>

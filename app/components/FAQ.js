@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {NavLink} from "react-router-dom";
+import helpers from "./utils/helpers";
 
 import Hero from "./Hero";
 
@@ -8,33 +9,93 @@ export default class FAQ extends React.Component {
     //     <div>
     //     {this.props.faq.map((data, i) => {
 
-    constructor(props) {
+    constructor(props){
         super(props);
+        this.state = {
+            FAQ: "",
+            renderFAQ:"",
+            faqCategory: "",
+        };
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    // // Show data in database
+    componentDidMount(){
+        helpers.getAllFAQ().then((data) => {
+            if (data !== "") {
+                this.setState({ FAQ: data.data, renderFAQ: data.data });
+            }
+        })
+        console.log("i just mounted")
+    }
+    // handleSubmit(event){
+    //     event.preventDefaut();
+    //     const newFAQ = [];
+    //     for (var i =0; i< this.state.FAQ.length; i++){
+    //         if(this.state.FAQ[i].Category == this.state.faqCategory){
+    //             newFAQ.push(this.state.FAQ[i])
+    //         }
+
+    //     }
+    //     this.setState({
+    //         FAQ: newFAQ,
+    //     })
+    //     // this.forceUpdate();
+    //     console.log(this.state.faqCategory);
+    //     console.log("im in the middle")
+    //     // console.log(this.state.FAQ);
+
+    // }
+    handleChange(event){
+        const property = event.target.id;
+        const value = event.target.value;
+
+        this.setState({
+            faqCategory: value
+        })
+        console.log("event.target: " + event.target)
+        console.log("event.target.id: " +event.target.id)
+        console.log("event.target.value: " +event.target.value)
+        console.log("this.state.faqCategory: " +this.state.faqCategory)
+        var newFAQ = [];
+        console.log(this.state.FAQ);
+        for (var i =0; i< this.state.FAQ.length; i++){
+            if(this.state.FAQ[i].Category == event.target.value){
+                newFAQ.push(this.state.FAQ[i])
+            }
+
+        }
+        console.log("newFAQ", newFAQ)
+        this.setState({
+            renderFAQ: newFAQ,
+        })
+        
+
     }
 
     render() {
-        
 
         return(
             <div className="faq">
-                <Hero/> 
+                <Hero title={"Frequently Asked Questions"} bodyCopy={"Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic and/ or search specific words or phrases. If your question is still not answered, please contact us for more information."}/> 
                 <div className="container">
-                    <form action="/" method="POST">
+                    <form action="/" method="POST" onSubmit={this.handleSubmit}>
                         <div className="row">
                             <div className="form-group col-md-8 col-md-offset-2">
-                                <label htmlFor="faqCategory"> Topics </label>
-                                <select className="form-control" id="faqCategory">
-                                <option value="eligibility" name="eligibility">Eligibility</option>
-                                <option value="recurrence" name="recurrence">Recurrence</option>
-                                <option value="concomitantMeds" name="concomitantMeds">Concomitant Meds</option>
-                                <option value="adverseEvent" name="adverseEvent">Adverse Event</option>
-                                <option value="randomization" name="randomization">Randomization</option>
-                                <option value="tumorAssessment" name="tumorAssessment">Tumor Assessment</option>
-                                <option value="studyProcedures" name="studyProcedures">Study Procedures</option>
-                                <option value="studyDrug" name="studyDrug">Study Drug</option>
-                                <option value="labs" name="labs">Labs</option>
-                                <option value="regulatory" name="regulatory">Regulatory</option>
-                                <option value="Other" name="other">Other</option>
+                                <label for="faqCategory"> Topics </label>
+                                <select className="form-control" id="faqCategory" value={this.state.faqCategory} onChange={this.handleChange}>
+                                <option value = "Eligibility">Eligibility</option>
+                                <option value = "Recurrence">Recurrence</option>
+                                <option value = "Concomitant Meds">Concomitant Meds</option>
+                                <option value = "Adverse Event">Adverse Event</option>
+                                <option value = "Randomization">Randomization</option>
+                                <option value = "Tumor Assessment">Tumor Assessment</option>
+                                <option value = "Study Procedures">Study Procedures</option>
+                                <option value = "Study Drug">Study Drug</option>
+                                <option value = "Labs">Labs</option>
+                                <option value = "Regulatory">Regulatory</option>
+                                <option value = "Other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -52,8 +113,8 @@ export default class FAQ extends React.Component {
                     </form>
 
                     <div className="questions">
-                        <div className="row"> {console.log(this.props.FAQ)}   
-                            {(this.props.FAQ) && this.props.FAQ.data.map((data)=>{
+                        <div className="row">   
+                            {(this.state.renderFAQ) && this.state.renderFAQ.map((data)=>{
                                 return(
                                     <div className="col-md-12" key={data._id}>
                                         <h4 className="question">
@@ -82,8 +143,9 @@ export default class FAQ extends React.Component {
                 </div>
             </div>
         );
-        // })}
-        // </div>
-        // )
     }
 }
+
+
+
+

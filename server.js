@@ -49,13 +49,13 @@ var db = mongoose.connection;
 
 // route to receive all faq's from db
 app.get('/api/faq', function (req, res) {
-    console.log(Faq.find({}));
+    // console.log(Faq.find({}));
     Faq.find({}, function(error, doc){
         if (error) {
             console.log(error);
         }
         else {
-            console.log(doc);
+            // console.log(doc);
             res.json(doc);
         }
     });

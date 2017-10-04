@@ -8890,80 +8890,30 @@ var Footer = function Footer() {
                 { className: "container" },
                 _react2.default.createElement(
                     "div",
-                    { className: "footerSocial" },
-                    _react2.default.createElement(
-                        "span",
-                        { className: "title" },
-                        "Connect With Us"
-                    ),
+                    { id: "navbar", className: "navbar-collapse collapse" },
+                    _react2.default.createElement("ul", { className: "nav navbar-nav" }),
                     _react2.default.createElement(
                         "ul",
-                        { className: "social-networks" },
+                        { className: "navbar-nav navbar-right" },
                         _react2.default.createElement(
                             "li",
-                            null,
+                            { className: "footer-item" },
                             _react2.default.createElement(
                                 _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-twitter" })
+                                { to: "https://polynoma.com/privacy-policy/", target: "_blank" },
+                                "Privacy Policy"
                             )
                         ),
                         _react2.default.createElement(
                             "li",
-                            null,
+                            { className: "footer-item" },
                             _react2.default.createElement(
                                 _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-facebook" })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "li",
-                            null,
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-instagram" })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "li",
-                            null,
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-linkedin" })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "li",
-                            null,
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-youtube" })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "li",
-                            null,
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: "" },
-                                _react2.default.createElement("span", { className: "icon-pinterest" })
+                                { to: "https://polynoma.com/terms-of-use/", target: "_blank" },
+                                "Terms of Use"
                             )
                         )
-                    ),
-                    _react2.default.createElement(
-                        "span",
-                        { className: "copyright" },
-                        "\xA9Refundo, Inc."
                     )
-                ),
-                _react2.default.createElement(
-                    "p",
-                    { className: "text-muted text-center" },
-                    "\xA9 Clinical Trial App"
                 )
             )
         )
@@ -8991,6 +8941,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(25);
 
+var _helpers = __webpack_require__(265);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
 var _Hero = __webpack_require__(78);
 
 var _Hero2 = _interopRequireDefault(_Hero);
@@ -9013,23 +8967,91 @@ var FAQ = function (_React$Component) {
     function FAQ(props) {
         _classCallCheck(this, FAQ);
 
-        return _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).call(this, props));
+
+        _this.state = {
+            FAQ: "",
+            renderFAQ: "",
+            faqCategory: ""
+        };
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
     }
 
+    // // Show data in database
+
+
     _createClass(FAQ, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _helpers2.default.getAllFAQ().then(function (data) {
+                if (data !== "") {
+                    _this2.setState({ FAQ: data.data, renderFAQ: data.data });
+                }
+            });
+            console.log("i just mounted");
+        }
+        // handleSubmit(event){
+        //     event.preventDefaut();
+        //     const newFAQ = [];
+        //     for (var i =0; i< this.state.FAQ.length; i++){
+        //         if(this.state.FAQ[i].Category == this.state.faqCategory){
+        //             newFAQ.push(this.state.FAQ[i])
+        //         }
+
+        //     }
+        //     this.setState({
+        //         FAQ: newFAQ,
+        //     })
+        //     // this.forceUpdate();
+        //     console.log(this.state.faqCategory);
+        //     console.log("im in the middle")
+        //     // console.log(this.state.FAQ);
+
+        // }
+
+    }, {
+        key: "handleChange",
+        value: function handleChange(event) {
+            var property = event.target.id;
+            var value = event.target.value;
+
+            this.setState({
+                faqCategory: value
+            });
+            console.log("event.target: " + event.target);
+            console.log("event.target.id: " + event.target.id);
+            console.log("event.target.value: " + event.target.value);
+            console.log("this.state.faqCategory: " + this.state.faqCategory);
+            var newFAQ = [];
+            console.log(this.state.FAQ);
+            for (var i = 0; i < this.state.FAQ.length; i++) {
+                if (this.state.FAQ[i].Category == event.target.value) {
+                    newFAQ.push(this.state.FAQ[i]);
+                }
+            }
+            console.log("newFAQ", newFAQ);
+            this.setState({
+                renderFAQ: newFAQ
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
 
             return _react2.default.createElement(
                 "div",
                 { className: "faq" },
-                _react2.default.createElement(_Hero2.default, null),
+                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic and/ or search specific words or phrases. If your question is still not answered, please contact us for more information." }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
                     _react2.default.createElement(
                         "form",
-                        { action: "/", method: "POST" },
+                        { action: "/", method: "POST", onSubmit: this.handleSubmit },
                         _react2.default.createElement(
                             "div",
                             { className: "row" },
@@ -9038,65 +9060,65 @@ var FAQ = function (_React$Component) {
                                 { className: "form-group col-md-8 col-md-offset-2" },
                                 _react2.default.createElement(
                                     "label",
-                                    { htmlFor: "faqCategory" },
+                                    { "for": "faqCategory" },
                                     " Topics "
                                 ),
                                 _react2.default.createElement(
                                     "select",
-                                    { className: "form-control", id: "faqCategory" },
+                                    { className: "form-control", id: "faqCategory", value: this.state.faqCategory, onChange: this.handleChange },
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "eligibility", name: "eligibility" },
+                                        { value: "Eligibility" },
                                         "Eligibility"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "recurrence", name: "recurrence" },
+                                        { value: "Recurrence" },
                                         "Recurrence"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "concomitantMeds", name: "concomitantMeds" },
+                                        { value: "Concomitant Meds" },
                                         "Concomitant Meds"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "adverseEvent", name: "adverseEvent" },
+                                        { value: "Adverse Event" },
                                         "Adverse Event"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "randomization", name: "randomization" },
+                                        { value: "Randomization" },
                                         "Randomization"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "tumorAssessment", name: "tumorAssessment" },
+                                        { value: "Tumor Assessment" },
                                         "Tumor Assessment"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "studyProcedures", name: "studyProcedures" },
+                                        { value: "Study Procedures" },
                                         "Study Procedures"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "studyDrug", name: "studyDrug" },
+                                        { value: "Study Drug" },
                                         "Study Drug"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "labs", name: "labs" },
+                                        { value: "Labs" },
                                         "Labs"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "regulatory", name: "regulatory" },
+                                        { value: "Regulatory" },
                                         "Regulatory"
                                     ),
                                     _react2.default.createElement(
                                         "option",
-                                        { value: "Other", name: "other" },
+                                        { value: "Other" },
                                         "Other"
                                     )
                                 )
@@ -9131,9 +9153,7 @@ var FAQ = function (_React$Component) {
                         _react2.default.createElement(
                             "div",
                             { className: "row" },
-                            " ",
-                            console.log(this.props.FAQ),
-                            this.props.FAQ && this.props.FAQ.data.map(function (data) {
+                            this.state.renderFAQ && this.state.renderFAQ.map(function (data) {
                                 return _react2.default.createElement(
                                     "div",
                                     { className: "col-md-12", key: data._id },
@@ -9190,9 +9210,6 @@ var FAQ = function (_React$Component) {
                     )
                 )
             );
-            // })}
-            // </div>
-            // )
         }
     }]);
 
@@ -9249,12 +9266,7 @@ var Hero = function (_React$Component) {
     function Hero(props) {
         _classCallCheck(this, Hero);
 
-        var _this = _possibleConstructorReturn(this, (Hero.__proto__ || Object.getPrototypeOf(Hero)).call(this, props));
-
-        _this.state = {
-            heroTitle: ""
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Hero.__proto__ || Object.getPrototypeOf(Hero)).call(this, props));
     }
 
     _createClass(Hero, [{
@@ -9274,12 +9286,12 @@ var Hero = function (_React$Component) {
                         _react2.default.createElement(
                             "h2",
                             { className: "faqTitle" },
-                            "Frequenty Asked Questions"
+                            this.props.title
                         ),
                         _react2.default.createElement(
                             "p",
                             { className: "faqCopy" },
-                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                            this.props.bodyCopy
                         )
                     )
                 )
@@ -17049,12 +17061,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _reactDom.render)(_react2.default.createElement(_routes2.default, null), document.getElementById("app")); // Including React & React DOM
 
 
-$(document).on("click", "#loginSubmit", function () {
+$(document).on("click", "#searchInquiry", function () {
     // Grab the id associated with the article from the submit button
     //   var thisId = $(this).respo("data-id");
     //   var thisTitle = $(this).attr("data-title");
     //   var thisLink = $(this).attr("data-link");
-    redirect("/main");
+    console.log("i just submitted a question yo!");
 
     //   // Run a POST request to change the note, using what's entered in the inputs
     //   $.ajax({
@@ -28343,6 +28355,10 @@ var _FAQ = __webpack_require__(77);
 
 var _FAQ2 = _interopRequireDefault(_FAQ);
 
+var _Admin = __webpack_require__(328);
+
+var _Admin2 = _interopRequireDefault(_Admin);
+
 var _Auth = __webpack_require__(288);
 
 var _Auth2 = _interopRequireDefault(_Auth);
@@ -28399,6 +28415,7 @@ var Routes = exports.Routes = function Routes() {
                     }
                 } }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/contact", component: _Contact2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/admin", component: _Admin2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/login", render: function render(props) {
                     handleAuthentication(props);
                     return _react2.default.createElement(_Login2.default, null);
@@ -31340,6 +31357,9 @@ var helpers = {
   getAllFAQ: function getAllFAQ() {
     return axios.get("/api/faq");
   },
+  getAllFAQWithCategory: function getAllFAQWithCategory() {
+    return axios.get("/api/faq/:category", { Category: "Protocol" });
+  },
   getAllData: function getAllData() {
     return axios.get("/data");
   },
@@ -32418,7 +32438,7 @@ var Contact = function (_React$Component) {
                 "div",
                 { className: "wrapper" },
                 _react2.default.createElement(_Nav2.default, null),
-                _react2.default.createElement(_Hero2.default, null),
+                _react2.default.createElement(_Hero2.default, { title: "Contact Us", bodyCopy: "For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you." }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
@@ -39325,6 +39345,243 @@ var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _createBrowserHistory2.default)();
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _Nav = __webpack_require__(75);
+
+var _Nav2 = _interopRequireDefault(_Nav);
+
+var _Footer = __webpack_require__(76);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _FAQ = __webpack_require__(77);
+
+var _FAQ2 = _interopRequireDefault(_FAQ);
+
+var _Hero = __webpack_require__(78);
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// Importing components
+
+
+var Admin = function (_React$Component) {
+    _inherits(Admin, _React$Component);
+
+    function Admin(props) {
+        _classCallCheck(this, Admin);
+
+        var _this = _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).call(this, props));
+
+        _this.state = {
+            foo: null,
+            firstName: '',
+            lastName: '',
+            email: '',
+            topic: '',
+            question: '',
+            ticket: ''
+        };
+
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Admin, [{
+        key: "handleInputChange",
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.id;
+
+            this.setState(_defineProperty({}, name, value));
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            console.log("this submit was handled");
+            console.log('A ticket was submitted: ', this.state);
+            var firstName = this.state.firstName;
+            var lastName = this.state.lastName;
+            var email = this.state.email;
+            var question = this.state.question;
+            event.preventDefault();
+            this.sendTicket(question, firstName, lastName, email);
+        }
+
+        // sendTicket(question, firstName, lastName, email) {
+
+        //     fetch('/api/zendesk/newTicket/'+question+'/'+firstName+'/'+lastName+'/'+email)
+        //     .then(response => response.json())
+        //     .then((ticket) => { this.setState({ 
+        //         foo: null,
+        //         firstName: '',
+        //         lastName: '',
+        //         email: '',
+        //         topic: '',
+        //         question: '',
+        //         ticket: ''
+        //         });
+        //         alert('Thanks '+firstName+'! Your question has been submitted.');
+        //         this.forceUpdate();
+        //     });
+        // }
+
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "wrapper" },
+                _react2.default.createElement(_Nav2.default, null),
+                _react2.default.createElement(_Hero2.default, null),
+                _react2.default.createElement(
+                    "div",
+                    { className: "container" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "row" },
+                        _react2.default.createElement(
+                            "form",
+                            { onSubmit: this.handleSubmit, style: { marginBottom: 30 } },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "topic" },
+                                    "Select Category"
+                                ),
+                                _react2.default.createElement(
+                                    "select",
+                                    { className: "form-control", id: "topic" },
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Eligibility"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Recurrence"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Concomitant Meds"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Adverse Event"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Randomization"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Tumor Assessment"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Study Procedures"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Study Drug"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Labs"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Regulatory"
+                                    ),
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "Other"
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "adminQuestion" },
+                                    "Question"
+                                ),
+                                _react2.default.createElement("textarea", { className: "form-control", id: "adminQuestion", rows: "3",
+                                    value: this.state.adminQuestion,
+                                    onChange: this.handleInputChange })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "form-group" },
+                                _react2.default.createElement(
+                                    "label",
+                                    { "for": "adminAnswer" },
+                                    "Answer"
+                                ),
+                                _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "adminAnswer",
+                                    value: this.state.adminAnswer,
+                                    onChange: this.handleInputChange })
+                            ),
+                            _react2.default.createElement(
+                                "button",
+                                { type: "submit", className: "btn searchBtn" },
+                                "Submit"
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Admin;
+}(_react2.default.Component);
+
+exports.default = Admin;
 
 /***/ })
 /******/ ]);

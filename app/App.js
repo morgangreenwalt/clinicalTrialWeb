@@ -7,12 +7,12 @@ import Routes from "./config/routes";
 
 render(<Routes />, document.getElementById("app"));
 
-$(document).on("click", "#loginSubmit", function() {
+$(document).on("click", "#searchInquiry", function() {
   // Grab the id associated with the article from the submit button
 //   var thisId = $(this).respo("data-id");
 //   var thisTitle = $(this).attr("data-title");
 //   var thisLink = $(this).attr("data-link");
-    redirect("/main");
+    console.log("i just submitted a question yo!");
 
 //   // Run a POST request to change the note, using what's entered in the inputs
 //   $.ajax({
