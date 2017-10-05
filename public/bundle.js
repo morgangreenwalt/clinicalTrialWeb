@@ -32831,7 +32831,7 @@ var Admin = function (_React$Component) {
                 "div",
                 { className: "wrapper" },
                 _react2.default.createElement(_Nav2.default, null),
-                _react2.default.createElement(_Hero2.default, null),
+                _react2.default.createElement(_Hero2.default, { title: "Admin Log", bodyCopy: "For admin only: Please log all questions and answers to add to the database and include the respective topic." }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
