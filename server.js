@@ -19,9 +19,9 @@ var Faq = require('./models/Faq.js');
 var Zendesk = require('zendesk-node-api');
 
 var zendesk = new Zendesk({
- url: 'https://clintrial.zendesk.com', // https://example.zendesk.com 
- email: 'ryanglennarnett@gmail.com', // me@example.com 
- token: 'nv3iDcCAMTWVb4r58yGs9i6YK4gsjZuGLPBysrIX' // hfkUny3vgHCcV3UfuqMFZWDrLKms4z3W2f6ftjPT 
+ url: 'https://clinicaltrial.zendesk.com', 
+ email: 'clinicalTrialApp@gmail.com', 
+ token: 'bsYPyw55OYwo1ruXDdE2QUwOXeDpKHZItFHNWPsC' 
 });
 
 
