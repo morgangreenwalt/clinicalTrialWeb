@@ -75,32 +75,32 @@ export default class Contact extends React.Component {
         return(
             <div className="wrapper">
             <Nav/>
-            <Hero title={"Contact Us"} bodyCopy={"For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you."}/>
+            <Hero title={"Contact Us"} bodyCopy={"For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you."} hero={"/assets/img/contact.png"}/>
             
             <div className="container">
                 <div className="row">
                 <form onSubmit={this.handleSubmit} style={{marginBottom: 30}}>
                     <div className="form-group">
-                        <label for="firstName">First Name</label>
+                        <label htmlFor="firstName">First Name</label>
                         <input type="firstName" className="form-control" id="firstName" placeholder="Enter First Name"
                             value={this.state.firstName}
                             onChange={this.handleInputChange}/>
                     </div>
                     <div className="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label htmlFor="lastName">Last Name</label>
                         <input type="lastName" className="form-control" id="lastName" placeholder="Enter Last Name"
                             value={this.state.lastName}
                             onChange={this.handleInputChange}/>
                     </div>
                     <div className="form-group">
-                        <label for="email">Email address</label>
+                        <label htmlFor="email">Email address</label>
                         <input type="email" className="form-control" id="email" placeholder="Enter Email"
                             value={this.state.email}
                             onChange={this.handleInputChange}/>
                     </div>
             
                     <div className="form-group">
-                        <label for="topic">Select Topic</label>
+                        <label htmlFor="topic">Select Topic</label>
                         <select className="form-control" id="topic">              
                             {/* value={this.state.subject}
                             onChange={this.handleInputChange}> */}
@@ -119,7 +119,7 @@ export default class Contact extends React.Component {
                     </div>
                     
                     <div className="form-group">
-                        <label for="question">Question</label>
+                        <label htmlFor="question">Question</label>
                         <textarea className="form-control" id="question" rows="3"
                             value={this.state.question}
                             onChange={this.handleInputChange}>
@@ -129,7 +129,8 @@ export default class Contact extends React.Component {
                     <button type="submit" className="btn searchBtn">Submit</button>
                     </form>
                 </div> 
-            </div> 
+            </div>
+            <Footer/>
             </div>   
         )
     }

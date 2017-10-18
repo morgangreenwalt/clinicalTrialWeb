@@ -78,12 +78,12 @@ export default class FAQ extends React.Component {
 
         return(
             <div className="faq">
-                <Hero title={"Frequently Asked Questions"} bodyCopy={"Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic. If your question is still not answered, please contact us for more information."}/> 
+                <Hero title={"Frequently Asked Questions"} bodyCopy={"Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic. If your question is still not answered, please contact us for more information."} hero={"assets/img/faq.png"}/> 
                 <div className="container">
                     <form action="/" method="POST" onSubmit={this.handleSubmit}>
                         <div className="row">
                             <div className="form-group col-md-8 col-md-offset-2">
-                                <label for="faqCategory" style={{marginTop: 30}}> Topics </label>
+                                <label htmlFor="faqCategory" style={{marginTop: 30}}> Topics </label>
                                 <select className="form-control" id="faqCategory" value={this.state.faqCategory} onChange={this.handleChange}>
                                 <option value = "Eligibility">Eligibility</option>
                                 <option value = "Recurrence">Recurrence</option>

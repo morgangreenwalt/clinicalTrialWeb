@@ -31,6 +31,13 @@ h4 {
     background-color: white;
 }
 
+.resourceBtn {
+    border: 2.5px solid #fff;
+    /* background-color: rgb(80, 80, 80); */
+    background-color: #6b6b6b;
+    ;
+}
+
 .searchBtn {
     border: 2.5px solid #8DC73F;
     background-color: #fff;
@@ -42,8 +49,9 @@ a {
 
 .faqHero {
     /* background-color: #3F2950; */
-    background-image: url("https://pixnio.com/free-images/2017/03/25/2017-03-25-09-30-39.jpg");
+    /* background-image: url("https://pixnio.com/free-images/2017/03/25/2017-03-25-09-30-39.jpg"); */
     height: 300px;
+    width: 100%;
     opacity: .6;
     /* margin-top: -90px; */
     color: #000;
@@ -87,7 +95,7 @@ a {
 
 .footer {
     background-color: rgba(45, 44, 44, 0.83);
-    /* height: 300px; */
+    /* min-height: 100px; */
 }
 
 .row {
@@ -133,4 +141,41 @@ a {
     padding-top: 15px;
     padding-bottom: 30px;
     background-color: #8DC73F;
+}
+
+.resource {
+    border: 3px solid rgba(45, 44, 44, 0.83);
+    border-radius: 10px;
+    height: auto;
+    /* background-color: #6b6b6b; */
+    padding: 30px 20px 30px 20px;
+    color: #000;
+}
+
+.resourceTitle {
+    color: #000;
+}
+
+.resourceDesc {
+    font-size: 16px;
+    padding: 10px 0 10px 0;
+}
+
+.resourceImg {
+    width: 100%;
+    height: 150px;
+    border: 1px solid rgba(45, 44, 44, 0.83);
+}
+
+.img {
+    width: 100%;
+}
+
+.resourceDetails {
+    padding: 10px 0 10px 0;
+}
+
+.mainRes {
+    margin-top: 30px;
+    margin-bottom: 50px;
 }

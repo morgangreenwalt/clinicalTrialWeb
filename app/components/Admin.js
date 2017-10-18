@@ -70,7 +70,7 @@ export default class Admin extends React.Component {
                 <div className="row">
                 <form onSubmit={this.handleSubmit} style={{marginBottom: 30}}>
                     <div className="form-group">
-                        <label for="topic">Select Category</label>
+                        <label htmlFor="topic">Select Category</label>
                         <select className="form-control" id="adminCategory"
                             value={this.state.adminCategory}
                             onChange={this.handleInputChange}>>              
@@ -91,7 +91,7 @@ export default class Admin extends React.Component {
                     </div>
                     
                     <div className="form-group">
-                        <label for="adminQuestion">Question</label>
+                        <label htmlFor="adminQuestion">Question</label>
                         <textarea className="form-control" id="adminQuestion" rows="3"
                             value={this.state.adminQuestion}
                             onChange={this.handleInputChange}>
@@ -99,7 +99,7 @@ export default class Admin extends React.Component {
                     </div>
                     
                     <div className="form-group">
-                        <label for="adminAnswer">Answer</label>
+                        <label htmlFor="adminAnswer">Answer</label>
                         <input type="firstName" className="form-control" id="adminAnswer"
                             value={this.state.adminAnswer}
                             onChange={this.handleInputChange}/>

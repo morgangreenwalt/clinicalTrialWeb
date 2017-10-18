@@ -28,6 +28,10 @@ export default class Nav extends React.Component {
                             </li> */}
                             
                             <li className="nav-item" style={{marginTop: 10}}>
+                                <NavLink to="/resources" className="nav-link">Resources</NavLink>
+                            </li>
+
+                            <li className="nav-item" style={{marginTop: 10}}>
                                 <NavLink to="/main" className="nav-link">FAQ</NavLink>
                             </li>
 

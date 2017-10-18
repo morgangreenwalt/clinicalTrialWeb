@@ -4653,7 +4653,7 @@ var FAQ = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { className: "faq" },
-                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic. If your question is still not answered, please contact us for more information." }),
+                _react2.default.createElement(_Hero2.default, { title: "Frequently Asked Questions", bodyCopy: "Polynoma is currently running one of the world’s largest melanoma clinical trials for seviprotimut-L in the indication of resected stage IIB-III melanoma. For specific questions, filter by topic. If your question is still not answered, please contact us for more information.", hero: "assets/img/faq.png" }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
@@ -4668,7 +4668,7 @@ var FAQ = function (_React$Component) {
                                 { className: "form-group col-md-8 col-md-offset-2" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "faqCategory", style: { marginTop: 30 } },
+                                    { htmlFor: "faqCategory", style: { marginTop: 30 } },
                                     " Topics "
                                 ),
                                 _react2.default.createElement(
@@ -6149,6 +6149,15 @@ var Nav = function (_React$Component) {
                                 { className: "nav-item", style: { marginTop: 10 } },
                                 _react2.default.createElement(
                                     _reactRouterDom.NavLink,
+                                    { to: "/resources", className: "nav-link" },
+                                    "Resources"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "li",
+                                { className: "nav-item", style: { marginTop: 10 } },
+                                _react2.default.createElement(
+                                    _reactRouterDom.NavLink,
                                     { to: "/main", className: "nav-link" },
                                     "FAQ"
                                 )
@@ -6312,7 +6321,11 @@ var Hero = function (_React$Component) {
             return _react2.default.createElement(
                 "div",
                 { className: "row" },
-                _react2.default.createElement("div", { className: "faqHero" }),
+                _react2.default.createElement(
+                    "div",
+                    { className: "faqHero" },
+                    _react2.default.createElement("img", { className: "faqHero", src: this.props.hero })
+                ),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
@@ -32438,7 +32451,7 @@ var Contact = function (_React$Component) {
                 "div",
                 { className: "wrapper" },
                 _react2.default.createElement(_Nav2.default, null),
-                _react2.default.createElement(_Hero2.default, { title: "Contact Us", bodyCopy: "For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you." }),
+                _react2.default.createElement(_Hero2.default, { title: "Contact Us", bodyCopy: "For more information about Polynoma, your clinical trial, or our technology, please contact us. Use the form below to provide your information along with any questions or comments, and a representative will get back to you.", hero: "/assets/img/contact.png" }),
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
@@ -32453,7 +32466,7 @@ var Contact = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "firstName" },
+                                    { htmlFor: "firstName" },
                                     "First Name"
                                 ),
                                 _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "firstName", placeholder: "Enter First Name",
@@ -32465,7 +32478,7 @@ var Contact = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "lastName" },
+                                    { htmlFor: "lastName" },
                                     "Last Name"
                                 ),
                                 _react2.default.createElement("input", { type: "lastName", className: "form-control", id: "lastName", placeholder: "Enter Last Name",
@@ -32477,7 +32490,7 @@ var Contact = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "email" },
+                                    { htmlFor: "email" },
                                     "Email address"
                                 ),
                                 _react2.default.createElement("input", { type: "email", className: "form-control", id: "email", placeholder: "Enter Email",
@@ -32489,7 +32502,7 @@ var Contact = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "topic" },
+                                    { htmlFor: "topic" },
                                     "Select Topic"
                                 ),
                                 _react2.default.createElement(
@@ -32557,7 +32570,7 @@ var Contact = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "question" },
+                                    { htmlFor: "question" },
                                     "Question"
                                 ),
                                 _react2.default.createElement("textarea", { className: "form-control", id: "question", rows: "3",
@@ -32571,7 +32584,8 @@ var Contact = function (_React$Component) {
                             )
                         )
                     )
-                )
+                ),
+                _react2.default.createElement(_Footer2.default, null)
             );
         }
     }]);
@@ -32676,7 +32690,7 @@ var Login = function (_React$Component) {
                             { className: "form-group" },
                             _react2.default.createElement(
                                 "label",
-                                { "for": "trialNumber" },
+                                { htmlFor: "trialNumber" },
                                 "Polynoma Clinical Trial Number"
                             ),
                             _react2.default.createElement("input", { type: "text", name: "trialNumber", className: "form-control", id: "trialNumber", placeholder: "Clinical Trial Number", value: this.state.trialNumber, onChange: this.handleChange })
@@ -32846,7 +32860,7 @@ var Admin = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "topic" },
+                                    { htmlFor: "topic" },
                                     "Select Category"
                                 ),
                                 _react2.default.createElement(
@@ -32917,7 +32931,7 @@ var Admin = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "adminQuestion" },
+                                    { htmlFor: "adminQuestion" },
                                     "Question"
                                 ),
                                 _react2.default.createElement("textarea", { className: "form-control", id: "adminQuestion", rows: "3",
@@ -32929,7 +32943,7 @@ var Admin = function (_React$Component) {
                                 { className: "form-group" },
                                 _react2.default.createElement(
                                     "label",
-                                    { "for": "adminAnswer" },
+                                    { htmlFor: "adminAnswer" },
                                     "Answer"
                                 ),
                                 _react2.default.createElement("input", { type: "firstName", className: "form-control", id: "adminAnswer",

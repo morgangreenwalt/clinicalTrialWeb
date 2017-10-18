@@ -9,14 +9,15 @@ import FAQ from "./FAQ";
 export default class Hero extends React.Component {  
     constructor(props){
         super(props)
-       
     }
 
     render() {
 
         return(
             <div className="row">
-                <div className="faqHero"></div>
+                <div className="faqHero">
+                    <img className="faqHero" src={this.props.hero}/>
+                </div>
                     <div className="container">
                         <div className="faqMain">
                             <h2 className="faqTitle">{this.props.title}</h2>

@@ -41,7 +41,7 @@ export default class Login extends React.Component {
 
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            <label for="trialNumber">Polynoma Clinical Trial Number</label>
+                            <label htmlFor="trialNumber">Polynoma Clinical Trial Number</label>
                             <input type="text" name="trialNumber" className="form-control" id="trialNumber" placeholder="Clinical Trial Number" value={this.state.trialNumber} onChange={this.handleChange}/>
                         </div>
                         <div id="error"></div>
