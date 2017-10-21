@@ -4,8 +4,9 @@ import history from './history.js';
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'ttn10.auth0.com',
-    clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW',
-    redirectUri: 'http://localhost:3000/login',
+    clientID: 'VwwqAq8UXhy4ZhG8OoeFHeTTR61B4gsW', 
+    // redirectUri: 'http://localhost:3000/login',
+    redirectUri: 'https://enigmatic-bastion-52836.herokuapp.com/login',
     audience: 'https://ttn10.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile'

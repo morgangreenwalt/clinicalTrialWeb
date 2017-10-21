@@ -38,11 +38,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 // mLab Heroku Connection
-// mongoose.connect("mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg");
-// var db = mongoose.connection;
+mongoose.connect("mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg");
+var db = mongoose.connection;
 
 // // Database configuration with mongoose (Local connection)
-mongoose.connect("mongodb://localhost/clinical_trial_db");
+// mongoose.connect("mongodb://localhost/clinical_trial_db");
 
 var db = mongoose.connection;
 
