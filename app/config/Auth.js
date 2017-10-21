@@ -32,9 +32,9 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         console.log(history);
-        history.replace('/login');
+        history.replace('https://enigmatic-bastion-52836.herokuapp.com/login');
       } else if (err) {
-        history.replace('/login');
+        history.replace('https://enigmatic-bastion-52836.herokuapp.com/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
