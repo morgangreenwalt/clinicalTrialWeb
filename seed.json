@@ -1,5 +1,5 @@
 {
-    "undefined": "mongodb://localhost/clinical_trial_db",
-    "dev": "localhost/clinical_trial_db",
-    "prod": "localhost/clinical_trial_db"
+    "undefined": "mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg",
+    "dev": "mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg",
+    "prod": "mongodb://heroku_25j95brg:9ar0p68evjshju14bjfmniaibn@ds163294.mlab.com:63294/heroku_25j95brg"
 }
