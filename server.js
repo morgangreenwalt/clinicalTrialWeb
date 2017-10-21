@@ -43,8 +43,7 @@ var db = mongoose.connection;
 
 // // Database configuration with mongoose (Local connection)
 // mongoose.connect("mongodb://localhost/clinical_trial_db");
-
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
 app.post("/api/faq/adminAdd/:adminQuestion/:adminAnswer/:adminCategory", function (req, res) {
 
